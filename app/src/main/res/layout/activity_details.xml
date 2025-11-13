@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5E6E8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#7BC4C4"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UIUC Study Space Finder"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvDetailsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Study Spaces"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnSpaceTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Grainger Library"
+            android:textSize="32dp"
+            android:textColor="#333333"
+            android:textStyle="bold"
+            android:padding="20dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/spaces_grainger_drawable" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:id="@+id/tvSpaceRating1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2.1/5"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:drawableLeft="@drawable/bathroom_icon_drawable"/>
+
+            <TextView
+                android:id="@+id/tvSpaceRating1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=" 200"
+                android:textSize="20dp"
+                android:textColor="#333333"
+                android:drawableLeft="@drawable/capacity_icon_drawable" />
+
+            <TextView
+                android:id="@+id/tvSpaceRating1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=" Open"
+                android:textSize="20dp"
+                android:textColor="#008000"
+                android:drawableLeft="@drawable/hours_icon_drawable" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2B8484"
+            android:text="Study here!"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="#CCCCCC"
+            android:layout_marginHorizontal="100dp"
+            android:padding="30dp"/>
+
+
+    </LinearLayout>
+</ScrollView>

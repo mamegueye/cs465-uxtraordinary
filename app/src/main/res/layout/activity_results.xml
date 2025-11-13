@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5E6E8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#7BC4C4"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvAppTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UIUC Study Space Finder"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvResultsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Study Space Results"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Space 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ECE Building"
+                android:textColor="#333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSpaceName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="3 minutes away"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                android:layout_marginBottom="5sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tvSpaceRating1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2.1/5"
+                    android:textSize="20dp"
+                    android:textColor="#333333"
+                    android:drawableLeft="@drawable/bathroom_icon_drawable"/>
+
+                <TextView
+                    android:id="@+id/tvSpaceRating1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=" 200"
+                    android:textSize="20dp"
+                    android:textColor="#333333"
+                    android:drawableLeft="@drawable/capacity_icon_drawable" />
+
+                <TextView
+                    android:id="@+id/tvSpaceRating1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=" Open"
+                    android:textSize="20dp"
+                    android:textColor="#008000"
+                    android:drawableLeft="@drawable/hours_icon_drawable" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999999" />
+
+        <!-- Space 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Beckman Institute"
+                android:textColor="#333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSpaceName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="8 minutes away"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                android:layout_marginBottom="5sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tvSpaceRating2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4.3/5"
+                    android:textSize="20dp"
+                    android:textColor="#333333"
+                    android:drawableLeft="@drawable/bathroom_icon_drawable"/>
+
+                <TextView
+                    android:id="@+id/tvSpaceRating2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=" 100"
+                    android:textSize="20dp"
+                    android:textColor="#333333"
+                    android:drawableLeft="@drawable/capacity_icon_drawable" />
+
+                <TextView
+                    android:id="@+id/tvSpaceRating2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=" Closed"
+                    android:textSize="20dp"
+                    android:textColor="#800000"
+                    android:drawableLeft="@drawable/hours_icon_drawable" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999999" />
+
+        <!-- Space 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sydney Lu MechE Building"
+                android:textColor="#333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSpaceName3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="12 minutes away"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                android:layout_marginBottom="5sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tvSpaceRating3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4.2/5"
+                    android:textSize="20dp"
+                    android:textColor="#333333"
+                    android:drawableLeft="@drawable/bathroom_icon_drawable"/>
+
+                <TextView
+                    android:id="@+id/tvSpaceRating3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=" 250"
+                    android:textSize="20dp"
+                    android:textColor="#333333"
+                    android:drawableLeft="@drawable/capacity_icon_drawable" />
+
+                <TextView
+                    android:id="@+id/tvSpaceRating3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=" Closing"
+                    android:textSize="20dp"
+                    android:textColor="#DAA520"
+                    android:drawableLeft="@drawable/hours_icon_drawable" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999999" />
+
+        <!-- Space 4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Campus Instructional Facility"
+                android:textColor="#333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSpaceName4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="8 minutes away"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                android:layout_marginBottom="5sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tvSpaceRating4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="3.2/5"
+                    android:textSize="20dp"
+                    android:textColor="#333333"
+                    android:drawableLeft="@drawable/bathroom_icon_drawable"/>
+
+                <TextView
+                    android:id="@+id/tvSpaceRating4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=" 400"
+                    android:textSize="20dp"
+                    android:textColor="#333333"
+                    android:drawableLeft="@drawable/capacity_icon_drawable" />
+
+                <TextView
+                    android:id="@+id/tvSpaceRating4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=" Open"
+                    android:textSize="20dp"
+                    android:textColor="#008000"
+                    android:drawableLeft="@drawable/hours_icon_drawable" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#999999" />
+
+        <!-- Space 5 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Illini Union"
+                android:textColor="#333333"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSpaceName5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="14 minutes away"
+                android:textColor="#666666"
+                android:textSize="14sp"
+                android:layout_marginBottom="5sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/tvSpaceRating5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4.4/5"
+                    android:textSize="20dp"
+                    android:textColor="#333333"
+                    android:drawableLeft="@drawable/bathroom_icon_drawable"/>
+
+                <TextView
+                    android:id="@+id/tvSpaceRating5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=" 180"
+                    android:textSize="20dp"
+                    android:textColor="#333333"
+                    android:drawableLeft="@drawable/capacity_icon_drawable" />
+
+                <TextView
+                    android:id="@+id/tvSpaceRating5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=" Open"
+                    android:textSize="20dp"
+                    android:textColor="#008000"
+                    android:drawableLeft="@drawable/hours_icon_drawable" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Back Button -->
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#7BC4C4"
+            android:text="Back"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="16dp" />
+
+    </LinearLayout>
+</ScrollView>
