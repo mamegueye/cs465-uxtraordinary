@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical"
+            android:background="#FFFFFF"
+            android:elevation="4dp">
+
+            <TextView
+                android:id="@+id/menuIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="☰"
+                android:textSize="22sp"
+                android:textColor="#333333" />
+
+            <TextView
+                android:id="@+id/titleHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Home"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#333333" />
+        </LinearLayout>
+
+        <!-- Centered body -->
+        <LinearLayout
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp">
+
+            <!-- Big, two-line heading -->
+            <TextView
+                android:id="@+id/heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Find a\nStudy Space"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                android:textColor="#222222"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:layout_marginBottom="32dp" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="We will help you pick a spot based on distance, cafe, and how busy it is."
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:textAlignment="center"
+                android:layout_marginBottom="36dp" />
+
+            <Button
+                android:id="@+id/btnGo"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Go"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:backgroundTint="#4CAF50"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/btnTutorial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How does this app work?"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textColor="#2563EB"
+                android:background="@android:color/transparent" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tutorialOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="#80000000"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/tutorialCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:gravity="center"
+            android:background="@android:color/white">
+
+            <TextView
+                android:id="@+id/tutorialTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Step 1: Start a search"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#222222"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/tutorialBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tap the Go button to set your location and preferences, then we will show you matching study spaces."
+                android:textSize="15sp"
+                android:textColor="#444444"
+                android:layout_marginBottom="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <Button
+                    android:id="@+id/btnTutorialSkip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Skip"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/btnTutorialGotIt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Got it"
+                    android:textAllCaps="false"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>
