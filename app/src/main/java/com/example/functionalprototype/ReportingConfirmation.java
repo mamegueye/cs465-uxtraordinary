@@ -58,6 +58,13 @@ public class ReportingConfirmation extends AppCompatActivity
             commentText.setText("(No comment entered)");
         }
 
+        // Added by Stella
+        Button menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ReportingConfirmation.this, Menu.class);
+            startActivity(intent);
+        });
+
         // The user has pressed the 'Next' Button
         nextButton = (Button) findViewById(R.id.next_button_report_confirmation);
         nextButton.setOnClickListener(this);

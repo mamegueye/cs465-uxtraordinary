@@ -52,6 +52,12 @@ implements AdapterView.OnItemSelectedListener,
         userReportAnswer = (EditText) findViewById(R.id.user_enter_report);
         userReportAnswer.setOnEditorActionListener(this);
 
+        // Added by Stella
+        Button menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ReportingFilter.this, Menu.class);
+            startActivity(intent);
+        });
 
         // The user has pressed the 'Next' Button
         nextButton = (Button) findViewById(R.id.next_button_report_filter);

@@ -35,6 +35,13 @@ implements AdapterView.OnItemSelectedListener, View.OnClickListener {
         // DOCS: https://developer.android.com/reference/android/widget/AdapterView.OnItemSelectedListener
         reportDropdownAnswer.setOnItemSelectedListener(this);
 
+        // Added by Stella
+        Button menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ReportFeature.this, Menu.class);
+            startActivity(intent);
+        });
+
         // The user has pressed the 'Next' Button
         nextButton = (Button) findViewById(R.id.next_button_report_feature);
         nextButton.setOnClickListener(this);

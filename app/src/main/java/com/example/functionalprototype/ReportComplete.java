@@ -21,6 +21,13 @@ public class ReportComplete extends AppCompatActivity
         setContentView(R.layout.activity_report_complete);
 
 
+        // Added by Stella
+        Button menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ReportComplete.this, Menu.class);
+            startActivity(intent);
+        });
+
         // The user has pressed the 'End' Button
         endButton = (Button) findViewById(R.id.end_button_report_complete);
         endButton.setOnClickListener(this);
