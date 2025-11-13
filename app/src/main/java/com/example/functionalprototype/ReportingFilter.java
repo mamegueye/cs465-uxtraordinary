@@ -124,21 +124,22 @@ implements AdapterView.OnItemSelectedListener,
 
     // For when the user presses the 'Next' Button or 'Back' Button
     public void onClick(View v) {
-        // Save the user's responses to display on the next page
-        // 1) What building do they want to report?
-        String buildingChoice = reportBuildingAnswer.getSelectedItem().toString();
 
-        // 2) What floor do they want to report?
-        int getSelectedFloorId = reportFloorAnswer.getCheckedRadioButtonId();
-        RadioButton selectedFloor = findViewById(getSelectedFloorId);
-        String floorChoice = selectedFloor.getText().toString();
-
-        // 3) What is their report blurb?
-        String reportComment = userReportAnswer.getText().toString();
-
-        // If the user presses, the 'Next' Button, go to
-        // the next reporting screen to select a BUILDING, FLOOR
+        // User pressed NEXT button
         if (v.getId() == R.id.next_button_report_filter){
+            // Save the user's responses to display on the next page
+            // 1) What building do they want to report?
+            String buildingChoice = reportBuildingAnswer.getSelectedItem().toString();
+
+            // 2) What floor do they want to report?
+            int getSelectedFloorId = reportFloorAnswer.getCheckedRadioButtonId();
+            RadioButton selectedFloor = findViewById(getSelectedFloorId);
+            String floorChoice = selectedFloor.getText().toString();
+
+            // 3) What is their report blurb?
+            String reportComment = userReportAnswer.getText().toString();
+
+            // Go to the next activity
             Intent intent = new Intent(this, ReportingConfirmation.class);
 
             // Carry the information to next activity
@@ -148,14 +149,17 @@ implements AdapterView.OnItemSelectedListener,
 
             // Go to next activity
             startActivity(intent);
+
+        // User pressed BACK button
         } else if (v.getId() == R.id.back_button_report_filter) {
             Intent intent = new Intent(this, ReportFeature.class);
+            Toast.makeText(this, "second if", Toast.LENGTH_SHORT).show();
             startActivity(intent);
-        }
 
-        // If they want to go home
-        if (v.getId() == R.id.home_button) {
+        // User pressed HOME button
+        } else if (v.getId() == R.id.home_button) {
             Intent intent = new Intent(this, MainActivity.class);
+            Toast.makeText(this, "third if", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         }
 

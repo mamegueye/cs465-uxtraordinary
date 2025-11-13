@@ -1,8 +1,10 @@
 package com.example.functionalprototype;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener hideOverlay = v -> tutorialOverlay.setVisibility(View.GONE);
         btnTutorialSkip.setOnClickListener(hideOverlay);
         btnTutorialGotIt.setOnClickListener(hideOverlay);
+
+        // Stella's code -- inserted by Hannah
+        TextView menuButton = findViewById(R.id.menuIcon);
+        menuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Menu.class);
+            startActivity(intent);
+        });
 
     }
 }

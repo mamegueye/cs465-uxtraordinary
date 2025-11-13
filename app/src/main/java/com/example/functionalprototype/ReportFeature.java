@@ -82,18 +82,19 @@ implements AdapterView.OnItemSelectedListener, View.OnClickListener {
 
     // For when the user presses the 'Next' Button or 'Back' Button
     public void onClick(View v) {
-        // If the user presses, the 'Next' Button, go to
-        // the next reporting screen to select a BUILDING, FLOOR
-        if (v.getId() == R.id.next_button_report_feature){
+
+        // User pressed NEXT BUTTON
+        if (v.getId() == R.id.next_button_report_feature) {
             Intent intent = new Intent(this, ReportingFilter.class);
             startActivity(intent);
+
+            // User pressed BACK BUTTON
         } else if (v.getId() == R.id.back_button_report_feature) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-        }
 
-        // If they want to go home
-        if (v.getId() == R.id.home_button) {
+        // User pressed HOME BUTTON
+        } else if (v.getId() == R.id.home_button) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }

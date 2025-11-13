@@ -81,17 +81,19 @@ public class ReportingConfirmation extends AppCompatActivity
 
     // For when the user presses the 'Next' Button or 'Back' Button
     public void onClick(View v) {
+
+        // Next Button was clicked
         if (v.getId() == R.id.next_button_report_confirmation){
             Intent intent = new Intent(this, ReportComplete.class);
-            // Go to next activity
             startActivity(intent);
+
+        // Back Button was clicked
         } else if (v.getId() == R.id.back_button_report_confirmation) {
             Intent intent = new Intent(this, ReportingFilter.class);
             startActivity(intent);
-        }
 
-        // If they want to go home
-        if (v.getId() == R.id.home_button) {
+        // Home Button was clicked
+        } else if (v.getId() == R.id.home_button) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
