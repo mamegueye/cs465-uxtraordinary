@@ -20,6 +20,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- /////////////////////// -->
+        <!-- Hannah's Reporting View -->
+        <!-- /////////////////////// -->
+        <activity
+            android:name=".ReportFeature"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ReportingFilter"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ReportingConfirmation"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ReportComplete"
+            android:exported="true">
+        </activity>
+        <!-- /////////////////////// -->
+        <!-- /////////////////////// -->
+
+
     </application>
 
 </manifest>

@@ -1,3 +1,58 @@
 <resources>
     <string name="app_name">FunctionalPrototype</string>
+
+    <!--/////////////////////////////-->
+    <!-- For Hannah's Reporting View -->
+    <!--/////////////////////////////-->
+
+    <!-- Reporting Top Navbar Headers and Buttons -->
+    <string name="header_report_complete">Reporting Complete</string>
+    <string name="header_report_confirmation">Reporting Confirmation</string>
+    <string name="header_report_filter">Reporting Filter</string>
+    <string name="home_button">Home</string>
+    <string name="menu_button">Menu</string>
+
+    <!-- Reporting Bottom NavBar Buttons -->
+    <string name="back_button">Back</string>
+    <string name="next_button">Next</string>
+    <string name="report_button">Report</string>
+    <string name="end_button">End</string>
+
+    <!-- Reporting prompt -->
+    <string name="reporting_prompt">Report a…</string>
+
+    <!-- For reporting options dropdown -->
+    <string-array name="reporting_options">
+        <item>Choose an option</item>
+        <item>App</item>
+        <item>Study Space or Bathroom</item>
+    </string-array>
+
+    <!--- Reporting filter strings -->
+    <string name="reporting_building">Report a building:</string>
+    <string name="reporting_floor">Report a floor:</string>
+    <string name="reporting_text_prompt">Enter your report here:</string>
+
+    <!-- Reporting building options -->
+    <string-array name="reporting_building_options">
+        <item>Choose an option</item>
+        <item>Siebel Art and Design</item>
+        <item>Siebel Computer Science</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- Reporting floor options -->
+    <string name="floor_basement">Basement</string>
+    <string name="floor_first">First Floor</string>
+    <string name="floor_second">Second Floor</string>
+    <string name="floor_third">Third Floor</string>
+    <string name="floor_fourth">Fourth Floor</string>
+    <string name="floor_fifth">Fifth Floor</string>
+    <string name="floor_other">Other</string>
+
+    <!-- Report comments -->
+    <string name="report_comment_prompt">Enter your report below:</string>
+
+    <!-- Report completion -->
+    <string name="reporting_complete">Success! Your report has been submitted to UIUC Facilities &amp; Services at fsserviceoffice@illinois.edu </string>
 </resources>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReportingFilter">
+
+
+
+    <!-- Fit screen -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Top Navbar -->
+        <RelativeLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center"
+            android:background="@color/black">
+
+            <Button
+                android:id="@+id/menu_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_button"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/header_report_filter"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="16dp"/>
+
+            <Button
+                android:id="@+id/home_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:backgroundTint="@android:color/transparent"
+                android:text="@string/home_button"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <!-- Report Filters -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center_horizontal">
+            
+            <!-- Choose the building to report -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reporting_building" />
+                <!-- Dropdown for choices; from Android docs -->
+                <Spinner
+                    android:id="@+id/report_building_dropdown"
+                    android:prompt="@string/reporting_prompt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+                    android:entries="@array/reporting_building_options"
+                    android:gravity="center">
+                </Spinner>
+            </LinearLayout>
+
+            <!-- Choose the floor to report -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reporting_floor"
+                    android:layout_marginTop="16dp"/>
+
+                <!-- Choices for floors; from geeksforgeeks -->
+                <RadioGroup
+                    android:id="@+id/report_floor_choices"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/floor_basement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/floor_basement" />
+
+                    <RadioButton
+                        android:id="@+id/floor_first"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/floor_first" />
+
+                    <RadioButton
+                        android:id="@+id/floor_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/floor_second" />
+
+                    <RadioButton
+                        android:id="@+id/floor_third"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/floor_third" />
+
+                    <RadioButton
+                        android:id="@+id/floor_fourth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/floor_fourth" />
+
+                    <RadioButton
+                        android:id="@+id/floor_fifth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/floor_fifth" />
+
+                    <RadioButton
+                        android:id="@+id/floor_other"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/floor_other" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- Enter your report comments; 10/22 Lecture -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/report_comment_prompt"
+                    android:layout_marginTop="16dp"/>
+                <EditText
+                    android:id="@+id/user_enter_report"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:minLines="3"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- /////////////////////////////////////// -->
+        <!-- //////// Bottom Navigation Bar //////// -->
+        <!-- ///////////////////////////////////////-->
+        <GridLayout
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:columnCount="2"
+            android:background="@color/black">
+
+            <Button
+                android:id="@+id/back_button_report_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/back_button"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:layout_columnWeight="1"/>
+
+            <Button
+                android:id="@+id/next_button_report_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/next_button"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:layout_columnWeight="1"/>
+        </GridLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

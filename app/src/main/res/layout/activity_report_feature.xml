@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReportFeature">
+
+    <!-- Code from 10/20 Lecture -->
+    <!-- For the screen -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <!-- Top Navbar -->
+        <RelativeLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:background="@color/black">
+
+            <Button
+                android:id="@+id/menu_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_button"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/report_button"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="16dp"/>
+
+            <Button
+                android:id="@+id/home_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:backgroundTint="@android:color/transparent"
+                android:text="@string/home_button"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <!-- What do you want to report? -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reporting_prompt" />
+
+            <!-- Choices for reporting -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+                <!-- Dropdown for choices; from Android docs -->
+                <Spinner
+                    android:id="@+id/reporting_type_dropdown"
+                    android:prompt="@string/reporting_prompt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:entries="@array/reporting_options">
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- /////////////////////////////////////// -->
+        <!-- //////// Bottom Navigation Bar //////// -->
+        <!-- ///////////////////////////////////////-->
+        <GridLayout
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:columnCount="2"
+            android:background="@color/black">
+
+            <Button
+                android:id="@+id/back_button_report_feature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/back_button"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:layout_columnWeight="1"/>
+
+            <Button
+                android:id="@+id/next_button_report_feature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/next_button"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:layout_columnWeight="1"/>
+        </GridLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
