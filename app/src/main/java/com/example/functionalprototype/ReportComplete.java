@@ -12,7 +12,7 @@ public class ReportComplete extends AppCompatActivity
 
 
 
-
+    private Button homeButton;
     private Button endButton;
 
     @Override
@@ -31,6 +31,10 @@ public class ReportComplete extends AppCompatActivity
         // The user has pressed the 'End' Button
         endButton = (Button) findViewById(R.id.end_button_report_complete);
         endButton.setOnClickListener(this);
+
+        // The user has pressed the 'Home' Button
+        homeButton = (Button) findViewById(R.id.home_button);
+        homeButton.setOnClickListener(this);
     }
 
     // For when the user presses the 'Back' Button or 'End' Button
@@ -38,6 +42,12 @@ public class ReportComplete extends AppCompatActivity
         // If the user presses, the 'Next' Button, go to
         // the next reporting screen to select a BUILDING, FLOOR
         if (v.getId() == R.id.end_button_report_complete) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+
+        // If they want to go home
+        if (v.getId() == R.id.home_button) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }

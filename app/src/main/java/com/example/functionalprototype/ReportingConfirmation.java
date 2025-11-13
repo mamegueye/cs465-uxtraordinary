@@ -22,6 +22,7 @@ public class ReportingConfirmation extends AppCompatActivity
 
     private Button backButton;
 
+    private Button homeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,10 @@ public class ReportingConfirmation extends AppCompatActivity
         // The user has pressed the 'Back' Button
         backButton = (Button) findViewById(R.id.back_button_report_confirmation);
         backButton.setOnClickListener(this);
+
+        // The user has pressed the 'Home' Button
+        homeButton = (Button) findViewById(R.id.home_button);
+        homeButton.setOnClickListener(this);
     }
 
     // For when the user presses the 'Next' Button or 'Back' Button
@@ -82,6 +87,12 @@ public class ReportingConfirmation extends AppCompatActivity
             startActivity(intent);
         } else if (v.getId() == R.id.back_button_report_confirmation) {
             Intent intent = new Intent(this, ReportingFilter.class);
+            startActivity(intent);
+        }
+
+        // If they want to go home
+        if (v.getId() == R.id.home_button) {
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
 

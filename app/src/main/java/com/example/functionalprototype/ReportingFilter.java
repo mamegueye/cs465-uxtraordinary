@@ -35,6 +35,8 @@ implements AdapterView.OnItemSelectedListener,
 
     private Button backButton;
 
+    private Button homeButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +68,10 @@ implements AdapterView.OnItemSelectedListener,
         // The user has pressed the 'Back' Button
         backButton = (Button) findViewById(R.id.back_button_report_filter);
         backButton.setOnClickListener(this);
+
+        // The user has pressed the 'Home' Button
+        homeButton = (Button) findViewById(R.id.home_button);
+        homeButton.setOnClickListener(this);
     }
 
     // Get building user wants to report
@@ -144,6 +150,12 @@ implements AdapterView.OnItemSelectedListener,
             startActivity(intent);
         } else if (v.getId() == R.id.back_button_report_filter) {
             Intent intent = new Intent(this, ReportFeature.class);
+            startActivity(intent);
+        }
+
+        // If they want to go home
+        if (v.getId() == R.id.home_button) {
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
 
