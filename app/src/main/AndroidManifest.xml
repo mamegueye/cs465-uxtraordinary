@@ -53,6 +53,17 @@
             android:exported="true">
         </activity>
 
+        <!-- Shriya's Tester Building List -->
+        <activity
+            android:name=".BuildingList"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".BuildingDetail"
+            android:exported="true">
+        </activity>
+
         <!-- Sanjit's Filter Page -->
 
         <activity

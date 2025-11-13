@@ -31,9 +31,8 @@ public class Menu extends AppCompatActivity {
 
         // Set up click listeners
         buildingsListButton.setOnClickListener(v -> {
-            // TODO: Replace with Buildings List activity name
-            // Intent intent = new Intent(Menu.this, BuildingsListActivity.class);
-            // startActivity(intent);
+            Intent intent = new Intent(Menu.this, BuildingList.class);
+            startActivity(intent);
         });
 
         reportIssueButton.setOnClickListener(v -> {
