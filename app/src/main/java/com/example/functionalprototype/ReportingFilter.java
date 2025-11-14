@@ -1,10 +1,13 @@
 package com.example.functionalprototype;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -14,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 public class ReportingFilter extends AppCompatActivity
 implements AdapterView.OnItemSelectedListener,
@@ -44,6 +49,7 @@ implements AdapterView.OnItemSelectedListener,
 
         // Grab Building choice
         reportBuildingAnswer = (Spinner) findViewById(R.id.report_building_dropdown);
+        loadBuildingNamesFromDB();
         reportBuildingAnswer.setOnItemSelectedListener(this);
 
         // Grab Floor choice
@@ -180,5 +186,43 @@ implements AdapterView.OnItemSelectedListener,
         }
 
     }
+
+    private void loadBuildingNamesFromDB() {
+        try {
+            DatabaseHelper dbHelper = new DatabaseHelper(this);
+            dbHelper.createDatabase();
+            SQLiteDatabase db = dbHelper.openDatabase();
+
+            // Query building names from table building_hours
+            Cursor cursor = db.rawQuery("SELECT building_name FROM building_hours ORDER BY building_name ASC", null);
+
+            ArrayList<String> buildings = new ArrayList<>();
+            buildings.add("Choose an option"); // optional placeholder
+
+            if (cursor.moveToFirst()) {
+                do {
+                    buildings.add(cursor.getString(0));
+                } while (cursor.moveToNext());
+            }
+
+            cursor.close();
+            db.close();
+
+            // Set adapter for spinner
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                    this,
+                    android.R.layout.simple_spinner_item,
+                    buildings
+            );
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            reportBuildingAnswer.setAdapter(adapter);
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Error loading buildings", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
 
 }
