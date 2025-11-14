@@ -68,6 +68,12 @@
             android:exported="false"
             android:label="Filter Study Spaces"
             android:theme="@style/Theme.AppCompat.Light" />
+        <!-- Ashley's Filter Page -->
+        <activity
+            android:name=".Results"
+            android:exported="false"
+            android:label="Top Study Spaces"
+            android:theme="@style/Theme.AppCompat.Light" />
     </application>
 
 </manifest>

@@ -1,6 +1,8 @@
 package com.example.functionalprototype;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
@@ -111,16 +113,15 @@ public class FilterActivity extends AppCompatActivity {
         // Get the current filter criteria
         FilterCriteria criteria = getFilterCriteria();
 
-        // TODO: When ResultsActivity is implemented, uncomment the following:
-        // Intent intent = new Intent(FilterActivity.this, ResultsActivity.class);
-        // intent.putExtra("filter_distance", criteria.getDistanceMiles());
-        // intent.putExtra("filter_open_now", criteria.isOpenNow());
-        // intent.putExtra("filter_cafe_food", criteria.isHasCafeFood());
-        // intent.putExtra("filter_location", criteria.getCurrentLocation());
-        // startActivity(intent);
+        Intent intent = new Intent(FilterActivity.this, Results.class);
+        intent.putExtra("filter_distance", criteria.getDistanceMiles());
+        intent.putExtra("filter_open_now", criteria.isOpenNow());
+        intent.putExtra("filter_cafe_food", criteria.isHasCafeFood());
+        intent.putExtra("filter_location", criteria.getCurrentLocation());
+        startActivity(intent);
 
         // For now, just log the criteria (or show a Toast for debugging)
-        // Log.d("FilterActivity", "Filter applied: " + criteria.toString());
+        Log.d("FilterActivity", "Filter applied: " + criteria.toString());
 
         // Placeholder: Return to previous activity
         finish();
