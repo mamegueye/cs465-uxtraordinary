@@ -2,20 +2,28 @@ package com.example.functionalprototype;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-/**
- * FilterActivity allows users to set filter criteria for finding study spaces
- * Filters include: distance, open now status, and cafe/food facilities
- */
-public class FilterActivity extends AppCompatActivity {
+public class SpaceFiltering extends AppCompatActivity
+    implements View.OnClickListener {
 
+    // Hannah
+    private Button applyButton;
+    private Button backButton;
+    private Button homeButton;
+    private TextView locationPlaceholder;
+
+    // From Sanjit's Code
     // UI Components
     private TextView tvCurrentLocation;
     private TextView tvDistanceValue;
@@ -28,18 +36,46 @@ public class FilterActivity extends AppCompatActivity {
     private float currentDistanceMiles = 0.5f;
     private boolean isOpenNow = false;
     private boolean hasCafeFood = false;
-    private String currentLocation = "Thomas M. Siebel Center for Computer Science";
+    private String currentLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_filter);
+        setContentView(R.layout.activity_space_filtering);
 
-        // Hide the default ActionBar since we have a custom top bar
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().hide();
+        // Added by Stella
+        Button menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(SpaceFiltering.this, Menu.class);
+            startActivity(intent);
+        });
+
+        // Hannah Code
+        // Grab the user's location preference from intent
+        Intent intent_received = getIntent();
+        String location_preference = intent_received.getStringExtra("location_preference");
+        currentLocation = location_preference;
+
+        // Grab XML location to replace
+        locationPlaceholder = findViewById(R.id.tvCurrentLocation);
+
+        // Replace XML placeholder with intent data
+        if (location_preference != null && !location_preference.isEmpty()) {
+            locationPlaceholder.setText(location_preference);
+        } else {
+            locationPlaceholder.setText("Location Not Available");
         }
 
+        // The user has pressed the 'Back' Button
+        backButton = (Button) findViewById(R.id.back_button_filtering);
+        backButton.setOnClickListener(this);
+
+        // The user has pressed the 'Home' Button
+        homeButton = (Button) findViewById(R.id.home_button);
+        homeButton.setOnClickListener(this);
+
+
+        // Sanjit's Code:
         // Initialize all UI components
         initializeViews();
 
@@ -47,6 +83,24 @@ public class FilterActivity extends AppCompatActivity {
         setupListeners();
     }
 
+    // Hannah
+    // For when the user presses the 'Next' Button or 'Back' Button
+    public void onClick(View v) {
+
+            // User pressed BACK BUTTON
+        if (v.getId() == R.id.back_button_filtering) {
+            Intent intent = new Intent(this, LocationRequest.class);
+            startActivity(intent);
+
+            // User pressed HOME BUTTON
+        } else if (v.getId() == R.id.home_button) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+
+    }
+
+    // Everything below is Sanjit's Code
     /**
      * Initialize all UI components by connecting XML views to Java variables
      */
@@ -115,18 +169,23 @@ public class FilterActivity extends AppCompatActivity {
      * This will be called when user clicks the Apply button
      */
     private void onApplyClicked() {
+        // Hannah
+        Intent intent = new Intent(this, Results.class);
+        startActivity(intent);
+        // Sanjir=t
         // Get the current filter criteria
         FilterCriteria criteria = getFilterCriteria();
 
-        Intent intent = new Intent(FilterActivity.this, Results.class);
-        intent.putExtra("filter_distance", criteria.getDistanceMiles());
-        intent.putExtra("filter_open_now", criteria.isOpenNow());
-        intent.putExtra("filter_cafe_food", criteria.isHasCafeFood());
-        intent.putExtra("filter_location", criteria.getCurrentLocation());
-        startActivity(intent);
+        // TODO: When ResultsActivity is implemented, uncomment the following:
+        // Intent intent = new Intent(FilterActivity.this, ResultsActivity.class);
+        // intent.putExtra("filter_distance", criteria.getDistanceMiles());
+        // intent.putExtra("filter_open_now", criteria.isOpenNow());
+        // intent.putExtra("filter_cafe_food", criteria.isHasCafeFood());
+        // intent.putExtra("filter_location", criteria.getCurrentLocation());
+        // startActivity(intent);
 
         // For now, just log the criteria (or show a Toast for debugging)
-        Log.d("FilterActivity", "Filter applied: " + criteria.toString());
+        // Log.d("FilterActivity", "Filter applied: " + criteria.toString());
 
         // Placeholder: Return to previous activity
         finish();

@@ -3,53 +3,69 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5E6E8">
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header Section -->
+        <!-- Top Bar -->
+        <!-- Top Navbar -->
+        <RelativeLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:background="#E84A27"> <!-- UIUC Orange -->
+
+            <Button
+                android:id="@+id/menu_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_button"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filter"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="16dp"/>
+
+            <Button
+                android:id="@+id/home_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_button"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+
+        <!-- MAIN CONTENT -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#7BC4C4"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="24dp">
 
-            <TextView
-                android:id="@+id/tvAppTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="UIUC Study Space Finder"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvFilterTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Filter Study Spaces"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Current Location Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
+            <!-- Current Location -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Current Location"
-                android:textColor="#333333"
-                android:textSize="14sp"
+                android:textColor="#222222"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -60,22 +76,23 @@
                 android:text="PLACEHOLDER"
                 android:textColor="#666666"
                 android:textSize="14sp" />
-        </LinearLayout>
 
-        <!-- Distance Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:paddingTop="0dp">
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="#E0E0E0" />
 
+
+            <!-- Distance -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="Distance"
-                android:textColor="#333333"
-                android:textSize="14sp"
+                android:textColor="#222222"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -90,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="0.5 miles"
-                    android:textColor="#7BC4C4"
+                    android:textColor="#4BA3F7"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -98,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Max: 5.0 miles"
-                    android:textColor="#999999"
+                    android:textColor="#666666"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -109,8 +126,8 @@
                 android:layout_marginTop="8dp"
                 android:max="10"
                 android:progress="1"
-                android:progressTint="#7BC4C4"
-                android:thumbTint="#7BC4C4" />
+                android:progressTint="#4BA3F7"
+                android:thumbTint="#4BA3F7" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -136,29 +153,23 @@
                     android:textColor="#999999"
                     android:textSize="12sp" />
             </LinearLayout>
-        </LinearLayout>
 
-        <!-- Divider -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="#E0E0E0" />
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="#E0E0E0" />
 
-        <!-- Study Space Type Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
 
+            <!-- Study Space Type -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="Study Space Type"
-                android:textColor="#333333"
-                android:textSize="14sp"
+                android:textColor="#222222"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <CheckBox
@@ -166,33 +177,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:buttonTint="#7BC4C4"
+                android:buttonTint="#4BA3F7"
                 android:text="Open Now"
                 android:textColor="#666666"
                 android:textSize="14sp" />
-        </LinearLayout>
 
-        <!-- Divider -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:background="#E0E0E0" />
 
-        <!-- Facility Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="#E0E0E0" />
 
+
+            <!-- Facilities -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="Facility"
-                android:textColor="#333333"
-                android:textSize="14sp"
+                android:textColor="#222222"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <CheckBox
@@ -200,31 +206,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:buttonTint="#7BC4C4"
-                android:text="Cafe/Food"
+                android:buttonTint="#4BA3F7"
+                android:text="Cafe / Food"
                 android:textColor="#666666"
                 android:textSize="14sp" />
+
         </LinearLayout>
 
-        <!-- Spacer to push button to bottom -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:minHeight="24dp" />
 
         <!-- Apply Button -->
         <Button
             android:id="@+id/btnApply"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="#7BC4C4"
+            android:layout_height="56dp"
+            android:layout_margin="24dp"
             android:text="Apply"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:padding="16dp" />
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4BA3F7" />
+        <GridLayout
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:columnCount="2"
+            android:background="#E84A27">
 
+            <Button
+                android:id="@+id/back_button_location_request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/back_button"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/transparent"
+                android:textStyle="bold"
+                android:layout_columnWeight="1"/>
+        </GridLayout>
     </LinearLayout>
 </ScrollView>

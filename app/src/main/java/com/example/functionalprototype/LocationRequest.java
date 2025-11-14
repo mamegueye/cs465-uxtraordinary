@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.RadioButton;
+import android.widget.Space;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -74,24 +75,24 @@ public class LocationRequest extends AppCompatActivity
 
             // Deal with different location access answers
         } else if (v.getId() == R.id.allow_while_using_button) {
-            Intent intent = new Intent(this, FilterActivity.class);
+            Intent intent = new Intent(this, SpaceFiltering.class);
 
             // Carry location preference to the filtering page
-            intent.putExtra("location_preference", "allow_while_using");
+            intent.putExtra("location_preference", "Current Location");
 
             startActivity(intent);
         } else if (v.getId() == R.id.allow_once_button) {
-            Intent intent = new Intent(this, FilterActivity.class);
+            Intent intent = new Intent(this, SpaceFiltering.class);
 
             // Carry location preference to the filtering page
-            intent.putExtra("location_preference", "allow_once");
+            intent.putExtra("location_preference", "Current Location");
 
             startActivity(intent);
         } else if (v.getId() == R.id.dont_allow_button) {
-            Intent intent = new Intent(this, FilterActivity.class);
+            Intent intent = new Intent(this, SpaceFiltering.class);
 
             // Carry location preference to the filtering page
-            intent.putExtra("location_preference", "dont_allow");
+            intent.putExtra("location_preference", "Location Not Available");
 
             startActivity(intent);
         }
