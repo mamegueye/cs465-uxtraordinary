@@ -54,6 +54,7 @@ public class SpaceFiltering extends AppCompatActivity
         // Grab the user's location preference from intent
         Intent intent_received = getIntent();
         String location_preference = intent_received.getStringExtra("location_preference");
+        currentLocation = location_preference;
 
         // Grab XML location to replace
         locationPlaceholder = findViewById(R.id.tvCurrentLocation);
@@ -64,10 +65,6 @@ public class SpaceFiltering extends AppCompatActivity
         } else {
             locationPlaceholder.setText("Location Not Available");
         }
-
-        // The user has pressed the 'Next' Button
-        applyButton = (Button) findViewById(R.id.btnApply);
-        applyButton.setOnClickListener(this);
 
         // The user has pressed the 'Back' Button
         backButton = (Button) findViewById(R.id.back_button_filtering);
@@ -90,15 +87,8 @@ public class SpaceFiltering extends AppCompatActivity
     // For when the user presses the 'Next' Button or 'Back' Button
     public void onClick(View v) {
 
-        // User pressed Apply BUTTON
-        if (v.getId() == R.id.btnApply) {
-            // Once Ashley gets the results page done, replace MainActivity with
-            // the new view
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-
             // User pressed BACK BUTTON
-        } else if (v.getId() == R.id.back_button_filtering) {
+        if (v.getId() == R.id.back_button_filtering) {
             Intent intent = new Intent(this, LocationRequest.class);
             startActivity(intent);
 
@@ -179,6 +169,10 @@ public class SpaceFiltering extends AppCompatActivity
      * This will be called when user clicks the Apply button
      */
     private void onApplyClicked() {
+        // Hannah
+        Intent intent = new Intent(this, Results.class);
+        startActivity(intent);
+        // Sanjir=t
         // Get the current filter criteria
         FilterCriteria criteria = getFilterCriteria();
 
