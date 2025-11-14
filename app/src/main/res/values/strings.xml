@@ -24,8 +24,8 @@
     <!-- For reporting options dropdown -->
     <string-array name="reporting_options">
         <item>Choose an option</item>
-        <item>App</item>
-        <item>Study Space or Bathroom</item>
+        <item>Study Space</item>
+        <item>Bathroom</item>
     </string-array>
 
     <!--- Reporting filter strings -->

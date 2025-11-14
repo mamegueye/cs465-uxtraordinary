@@ -82,9 +82,11 @@ implements AdapterView.OnItemSelectedListener,
         String userChoice = parent.getItemAtPosition(position).toString();
 
         // Ensure that the user does not choose the placeholder text
-        if (userChoice.equals("Choose an option")) {
-            Toast.makeText(this, "Unsuccessful: Please select 'App' or 'Study Space or Bathroom'", Toast.LENGTH_SHORT).show();
-        } else {
+        // Commented this out because it was loading this toast
+        // as soon as we landed on Activity
+        // if (userChoice.equals("Choose an option")) {
+        //Toast.makeText(this, "Unsuccessful: Please select 'App' or 'Study Space or Bathroom'", Toast.LENGTH_SHORT).show();
+        if (!userChoice.equals("Choose an option")) {
             Toast.makeText(this, "Selected: " + userChoice, Toast.LENGTH_SHORT).show();
         }
     }
@@ -130,14 +132,28 @@ implements AdapterView.OnItemSelectedListener,
             // Save the user's responses to display on the next page
             // 1) What building do they want to report?
             String buildingChoice = reportBuildingAnswer.getSelectedItem().toString();
+            if (buildingChoice.equals("Choose an option")) {
+                Toast.makeText(this, "Please select a building.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             // 2) What floor do they want to report?
             int getSelectedFloorId = reportFloorAnswer.getCheckedRadioButtonId();
+            if (getSelectedFloorId == -1) {
+                Toast.makeText(this, "Please select a floor.", Toast.LENGTH_SHORT).show();
+                return;
+            }
             RadioButton selectedFloor = findViewById(getSelectedFloorId);
             String floorChoice = selectedFloor.getText().toString();
 
+
             // 3) What is their report blurb?
             String reportComment = userReportAnswer.getText().toString();
+            if (reportComment.isEmpty()) {
+                Toast.makeText(this, "You cannot report empty text. Please type in your issue.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
 
             // Go to the next activity
             Intent intent = new Intent(this, ReportingConfirmation.class);
@@ -153,13 +169,13 @@ implements AdapterView.OnItemSelectedListener,
         // User pressed BACK button
         } else if (v.getId() == R.id.back_button_report_filter) {
             Intent intent = new Intent(this, ReportFeature.class);
-            Toast.makeText(this, "second if", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "second if", Toast.LENGTH_SHORT).show();
             startActivity(intent);
 
         // User pressed HOME button
         } else if (v.getId() == R.id.home_button) {
             Intent intent = new Intent(this, MainActivity.class);
-            Toast.makeText(this, "third if", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "third if", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         }
 

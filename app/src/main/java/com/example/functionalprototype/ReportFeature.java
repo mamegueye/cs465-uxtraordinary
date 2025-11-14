@@ -68,9 +68,11 @@ implements AdapterView.OnItemSelectedListener, View.OnClickListener {
         String userChoice = parent.getItemAtPosition(position).toString();
 
         // Ensure that the user does not choose the placeholder text
-        if (userChoice.equals("Choose an option")) {
-            Toast.makeText(this, "Unsuccessful: Please select 'App' or 'Study Space or Bathroom'", Toast.LENGTH_SHORT).show();
-        } else {
+        // Commented this out because it was loading this toast
+        // as soon as we landed on Activity
+        // if (userChoice.equals("Choose an option")) {
+            //Toast.makeText(this, "Unsuccessful: Please select 'App' or 'Study Space or Bathroom'", Toast.LENGTH_SHORT).show();
+        if (!userChoice.equals("Choose an option")) {
             Toast.makeText(this, "Selected: " + userChoice, Toast.LENGTH_SHORT).show();
         }
     }
