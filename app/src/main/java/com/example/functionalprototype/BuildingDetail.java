@@ -28,6 +28,7 @@ public class BuildingDetail extends AppCompatActivity {
         TextView saturday = findViewById(R.id.saturday);
         TextView sunday = findViewById(R.id.sunday);
         TextView cleanliness = findViewById(R.id.cleanliness);
+        TextView cafe = findViewById(R.id.cafe);
 
         //Days of the week
         monday.setText("Monday: " + (getIntent().getStringExtra("monday") != null ? getIntent().getStringExtra("monday") : "N/A"));
@@ -41,5 +42,7 @@ public class BuildingDetail extends AppCompatActivity {
         // Cleanliness
         Float clean = getIntent().getFloatExtra("cleanliness", -1f);
         cleanliness.setText("Cleanliness: " + (clean != -1f ? String.valueOf(clean) : "N/A"));
+
+        cafe.setText("Cafe: " + (getIntent().getStringExtra("cafe") != null ? getIntent().getStringExtra("cafe") : "N/A"));
     }
 }
