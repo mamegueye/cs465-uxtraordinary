@@ -41,7 +41,8 @@ public class Menu extends AppCompatActivity {
         });
 
         backButton.setOnClickListener(v -> {
-            finish();
+            Intent intent = new Intent(Menu.this, MainActivity.class);
+            startActivity(intent);
         });
     }
 }

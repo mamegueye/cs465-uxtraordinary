@@ -1,5 +1,6 @@
 package com.example.functionalprototype;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -25,7 +26,8 @@ public class Help extends AppCompatActivity {
         // Back button
         Button backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> {
-            finish();
+            Intent intent = new Intent(Help.this, MainActivity.class);
+            startActivity(intent);
         });
     }
 }
