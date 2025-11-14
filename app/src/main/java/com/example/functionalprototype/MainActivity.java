@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Handle system bars insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnGo = findViewById(R.id.btnGo);
         btnGo.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, FilterActivity.class);
+            Intent intent = new Intent(MainActivity.this, LocationRequest.class);
             startActivity(intent);
         });
     }
