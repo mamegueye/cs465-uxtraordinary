@@ -35,6 +35,11 @@ public class FilterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
+        // Hide the default ActionBar since we have a custom top bar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         // Initialize all UI components
         initializeViews();
 
