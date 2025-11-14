@@ -64,4 +64,21 @@
     <string name="allow_while_using">Allow While Using</string>
     <string name="allow_once">Allow Once</string>
     <string name="dont_allow">Don\'t Allow</string>
+
+
+    <!--/////////////////////////////-->
+    <!-- For Hannah's Study Space Filter -->
+    <!--/////////////////////////////-->
+    <string name="UIUC_space_header">UIUC Study Space Finder</string>
+    <string name="current_location_header">Current Location</string>
+    <string name="distance_header">Distance</string>
+    <string name="placeholder_miles">0.5 miles</string>
+    <string name="max_miles">Max: 5.0 miles</string>
+    <string name="min_miles_label">0.0</string>
+    <string name="max_miles_label">5.0</string>
+    <string name="study_space_type">Study Space Type</string>
+    <string name="open_now">Open Now</string>
+    <string name="facility_label">Facility</string>
+    <string name="cafe_food">Cafe/Food</string>
+    <string name="filter_apply_button">Apply</string>
 </resources>
