@@ -19,7 +19,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:gravity="center_vertical"
-            android:background="#FFFFFF"
+            android:background="#E84A27"
             android:elevation="4dp">
 
             <TextView
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:text="☰"
                 android:textSize="22sp"
-                android:textColor="#333333" />
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/titleHome"
@@ -39,10 +39,9 @@
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#333333" />
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
-        <!-- Centered body -->
         <LinearLayout
             android:id="@+id/body"
             android:layout_width="match_parent"
@@ -52,7 +51,6 @@
             android:gravity="center"
             android:padding="24dp">
 
-            <!-- Big, two-line heading -->
             <TextView
                 android:id="@+id/heading"
                 android:layout_width="wrap_content"
@@ -84,7 +82,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
-                android:backgroundTint="#4CAF50"
+                android:backgroundTint="#4BA3F7"
                 android:layout_marginBottom="16dp" />
 
             <Button
