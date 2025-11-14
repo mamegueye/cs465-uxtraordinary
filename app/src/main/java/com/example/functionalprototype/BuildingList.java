@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,7 +49,7 @@ public class BuildingList extends AppCompatActivity {
 
         adapter = new BuildingAdapter(buildingList, building -> {
             Intent intent = new Intent(BuildingList.this, BuildingDetail.class);
-            intent.putExtra("buidling_name", building.building_name);
+            intent.putExtra("building_name", building.building_name);
             intent.putExtra("monday", building.monday);
             intent.putExtra("tuesday", building.tuesday);
             intent.putExtra("wednesday", building.wednesday);
@@ -64,11 +65,18 @@ public class BuildingList extends AppCompatActivity {
         });
 
         recyclerView.setAdapter(adapter);
+
+        Button backButton = findViewById(R.id.back);
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(BuildingList.this, Menu.class);
+            startActivity(intent);
+        });
     }
 
     private List<Building> getAllBuildings(SQLiteDatabase db) {
         List<Building> buildings = new ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT * FROM building_hours", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM building_hours ORDER BY building_name", null);
 
         if (cursor.moveToFirst()) {
             do {

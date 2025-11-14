@@ -41,8 +41,7 @@ public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         Building building = buildingList.get(position);
         holder.name.setText(building.building_name);
-        holder.monday.setText("Mon: " + building.monday +
-                " | Cleanliness: " + (building.cleanliness != null ? building.cleanliness : "N/A"));
+        holder.monday.setText("Cleanliness: " + (building.cleanliness != null ? building.cleanliness : "N/A"));
         holder.itemView.setOnClickListener(v -> listener.onItemClick(building));
     }
 
