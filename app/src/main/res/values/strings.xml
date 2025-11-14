@@ -55,4 +55,13 @@
 
     <!-- Report completion -->
     <string name="reporting_complete">Success! Your report has been submitted to UIUC Facilities &amp; Services at fsserviceoffice@illinois.edu </string>
+
+    <!--/////////////////////////////-->
+    <!-- For Hannah's Location Request -->
+    <!--/////////////////////////////-->
+    <string name="request_location_header">Set Location</string>
+    <string name="request_location_prompt">Allow app to access your location?</string>
+    <string name="allow_while_using">Allow While Using</string>
+    <string name="allow_once">Allow Once</string>
+    <string name="dont_allow">Don\'t Allow</string>
 </resources>

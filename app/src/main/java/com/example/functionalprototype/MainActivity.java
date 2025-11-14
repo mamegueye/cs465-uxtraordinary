@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnGo = findViewById(R.id.btnGo);
         btnGo.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, FilterActivity.class);
+            Intent intent = new Intent(MainActivity.this, LocationRequest.class);
             startActivity(intent);
         });
     }
