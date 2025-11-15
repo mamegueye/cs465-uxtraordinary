@@ -89,22 +89,43 @@ android:layout_height="match_parent">
     android:layout_width="0dp"
     android:layout_height="56dp"
     android:background="@color/illini_orange"
-    android:padding="12dp"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:columnCount="1"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent">
 
-    <Button
-        android:id="@+id/back_butt"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/back_button"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@android:color/transparent"
-        android:textStyle="bold"
-        android:layout_gravity="center" />
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnEnd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="End Session"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#1FFFFFFF"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="10dp"/>
+
+        <Button
+            android:id="@+id/btnReport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="Report"
+            android:textColor="@android:color/white"
+            android:backgroundTint="#1FFFFFFF"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="10dp"/>
+
+    </LinearLayout>
 </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

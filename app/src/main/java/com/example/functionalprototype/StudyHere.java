@@ -37,13 +37,6 @@ public class StudyHere extends AppCompatActivity {
         TextView name = findViewById(R.id.tvBuildingName);
         name.setText(getIntent().getStringExtra("building_name"));
 
-        // Set back button listener
-        Button backButton = findViewById(R.id.back_butt);
-        backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SpaceFiltering.class);
-            startActivity(intent);
-        });
-
         // Set menu button listener
         Button menuButton = findViewById(R.id.menu_button);
         menuButton.setOnClickListener(v -> {
@@ -55,6 +48,20 @@ public class StudyHere extends AppCompatActivity {
         Button homeButton = findViewById(R.id.home_button);
         homeButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        // Set end button listener
+        Button endButton = findViewById(R.id.btnEnd);
+        endButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        // Set report button listener
+        Button reportButton = findViewById(R.id.btnReport);
+        reportButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ReportingFilter.class);
             startActivity(intent);
         });
 
