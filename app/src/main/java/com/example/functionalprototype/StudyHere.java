@@ -43,6 +43,21 @@ public class StudyHere extends AppCompatActivity {
             Intent intent = new Intent(this, SpaceFiltering.class);
             startActivity(intent);
         });
+
+        // Set menu button listener
+        Button menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Menu.class);
+            startActivity(intent);
+        });
+
+        // Set home button listener
+        Button homeButton = findViewById(R.id.home_button);
+        homeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
+
         runTimer();
     }
 

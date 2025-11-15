@@ -1,10 +1,18 @@
 package com.example.functionalprototype;
 
+import android.graphics.Color;
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHolder> {
@@ -22,11 +30,14 @@ public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, monday;
+        public TextView name, distance, cleanliness, capacity, hours;
         public ViewHolder(View view) {
             super(view);
-            name = view.findViewById(R.id.name);
-            monday = view.findViewById(R.id.monday);
+            name = view.findViewById(R.id.tvBuildingName);
+            // distance = view.findViewById(R.id.tvBuildingDistance);
+            cleanliness = view.findViewById(R.id.tvBuildingCleanliness);
+            capacity = view.findViewById(R.id.tvBuildingCapacity);
+            hours = view.findViewById(R.id.tvBuildingHours);
         }
     }
 
@@ -41,12 +52,48 @@ public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         Building building = buildingList.get(position);
         holder.name.setText(building.building_name);
-        holder.monday.setText("Cleanliness: " + (building.cleanliness != null ? building.cleanliness : "N/A"));
+        // holder.distance.setText("");
+        holder.cleanliness.setText(" "+(building.cleanliness != null ? building.cleanliness : "N/A"));
+        holder.capacity.setText("  N/A");
+        holder.hours.setText("  " + getOpeningHours(building));
+        if (matchOpenNow(building)) {
+            holder.hours.setTextColor(Color.GREEN);
+        } else {
+            holder.hours.setTextColor(Color.WHITE);
+        }
         holder.itemView.setOnClickListener(v -> listener.onItemClick(building));
     }
 
     @Override
     public int getItemCount() {
         return buildingList.size();
+    }
+
+    private boolean matchOpenNow(Building building) {
+        LocalTime currentTime = LocalTime.now();
+        String openingHours = getOpeningHours(building);
+        ArrayList<LocalTime> buildingTimes = parseOpeningHours(openingHours);
+        if (currentTime.isBefore(buildingTimes.get(0)) || currentTime.isAfter(buildingTimes.get(1))) {
+            Log.d("MatchFailed", building.building_name + " is opened from " + buildingTimes.get(0) + " to " + buildingTimes.get(1));
+            return false;
+        }
+        return true;
+    }
+
+    // Extract hours as LocalTimes
+    private ArrayList<LocalTime> parseOpeningHours(String openingHours) {
+        ArrayList<LocalTime> times = new ArrayList<>();
+        for (String s : openingHours.split("-")) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[hh:mma][h:mma][hha][ha]");
+            times.add(LocalTime.from(formatter.parse(s)));
+        }
+        return times;
+    }
+
+    // Compare current time with provided building's opening hours
+    private String getOpeningHours(Building building) {
+        int currentDayOfWeek = LocalDate.now().getDayOfWeek().getValue();
+        String[] openingHours = {building.sunday, building.monday, building.tuesday, building.wednesday, building.thursday, building.friday, building.saturday};
+        return openingHours[currentDayOfWeek];
     }
 }

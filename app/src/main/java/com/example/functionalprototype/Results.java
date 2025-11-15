@@ -46,6 +46,20 @@ public class Results extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Set menu button listener
+        Button menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Menu.class);
+            startActivity(intent);
+        });
+
+        // Set home button listener
+        Button homeButton = findViewById(R.id.home_button);
+        homeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
+
         recyclerView = findViewById(R.id.buildingRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -142,7 +156,7 @@ public class Results extends AppCompatActivity {
                 Building building = new Building(buildingName, monday, tuesday, wednesday, thursday, friday, saturday, sunday, cleanliness, latitude, longitude, cafe);
 
                 // Apply filters
-                if (matchFilter(building)) {
+                if (matchDistance(building) && (!filterCafeFood || matchCafeFood(building)) && (!filterOpenNow || matchOpenNow(building))) {
                     buildings.add(building);
                 }
             } while (cursor.moveToNext());
@@ -151,33 +165,33 @@ public class Results extends AppCompatActivity {
         return buildings;
     }
 
-    // Check if a building matches the filter criteria
-    private boolean matchFilter(Building building) {
+    private boolean matchDistance(Building building) {
         // Compare distance
         double buildingDistance = calculateDistance(building.latitude, building.longitude, UserLat, UserLon);
         if (buildingDistance > filterDistance) {
             Log.d("MatchFailed", building.building_name + " is " + buildingDistance + " miles away.");
             return false;
         }
+        return true;
+    }
 
-        // Compare current time with opening hours
-        if (filterOpenNow) {
-            LocalTime currentTime = LocalTime.now();
-            int currentDayOfWeek = LocalDate.now().getDayOfWeek().getValue();
-            String[] openingHours = {building.sunday, building.monday, building.tuesday, building.wednesday, building.thursday, building.friday, building.saturday};
-            ArrayList<LocalTime> buildingTimes = parseOpeningHours(openingHours[currentDayOfWeek]);
-            if (currentTime.isBefore(buildingTimes.get(0)) || currentTime.isAfter(buildingTimes.get(1))) {
-                Log.d("MatchFailed", building.building_name + " is opened from " + buildingTimes.get(0) + " to " + buildingTimes.get(1));
-                return false;
-            }
+    private boolean matchOpenNow(Building building) {
+        LocalTime currentTime = LocalTime.now();
+        int currentDayOfWeek = LocalDate.now().getDayOfWeek().getValue();
+        String[] openingHours = {building.sunday, building.monday, building.tuesday, building.wednesday, building.thursday, building.friday, building.saturday};
+        ArrayList<LocalTime> buildingTimes = parseOpeningHours(openingHours[currentDayOfWeek]);
+        if (currentTime.isBefore(buildingTimes.get(0)) || currentTime.isAfter(buildingTimes.get(1))) {
+            Log.d("MatchFailed", building.building_name + " is opened from " + buildingTimes.get(0) + " to " + buildingTimes.get(1));
+            return false;
         }
+        return true;
+    }
 
-        // Check for cafe in building
-        if (filterCafeFood && (building.cafe == null || building.cafe.isEmpty())) {
+    private boolean matchCafeFood(Building building) {
+        if (building.cafe == null || building.cafe.isEmpty()) {
             Log.d("MatchFailed", building.building_name + "does not have a cafe.");
             return false;
         }
-
         return true;
     }
 

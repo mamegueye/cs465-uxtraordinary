@@ -25,6 +25,20 @@ public class BuildingDetail extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Set menu button listener
+        Button menuButton = findViewById(R.id.menu_button);
+        menuButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Menu.class);
+            startActivity(intent);
+        });
+
+        // Set home button listener
+        Button homeButton = findViewById(R.id.home_button);
+        homeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
+
         // Set study here button listener
         Button studyHereButton = findViewById(R.id.studyHere_butt);
         studyHereButton.setOnClickListener(v -> {
@@ -40,10 +54,10 @@ public class BuildingDetail extends AppCompatActivity {
 
         Intent intent = getIntent();
         name.setText(intent.getStringExtra("building_name"));
-        cleanliness.setText(" " + intent.getDoubleExtra("cleanliness", 0.f));
-        capacity.setText(" 200"); // TODO: replace this
+        cleanliness.setText(" " + intent.getFloatExtra("cleanliness", 0.f) + "/5");
+        capacity.setText("  N/A"); // TODO: replace this
         String currentDayOfWeek = LocalDate.now().getDayOfWeek().name().toLowerCase();
-        hours.setText(" " + intent.getStringExtra(currentDayOfWeek));
+        hours.setText("  " + intent.getStringExtra(currentDayOfWeek));
 
         buildingName = intent.getStringExtra("building_name");
     }

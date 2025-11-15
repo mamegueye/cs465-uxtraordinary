@@ -15,20 +15,62 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/tvBuildingName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="University of Illinois"
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@android:color/white" />
 
-        <TextView
-            android:id="@+id/monday"
+        <!--
+        TextView
+            android:id="@+id/tvBuildingDistance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@android:color/white"
-            android:paddingTop="4dp"/>
+            android:text="N/A miles"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"/-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/tvBuildingCleanliness"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="N/A"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
+                android:drawableLeft="@drawable/bathroom_icon_drawable"/>
+
+            <TextView
+                android:id="@+id/tvBuildingCapacity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="  N/A"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
+                android:drawableLeft="@drawable/capacity_icon_drawable" />
+
+            <TextView
+                android:id="@+id/tvBuildingHours"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="  N/A"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
+                android:drawableLeft="@drawable/hours_icon_drawable" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
