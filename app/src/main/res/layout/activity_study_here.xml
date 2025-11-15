@@ -27,7 +27,7 @@ android:layout_height="match_parent">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Study Space Details"
+        android:text="Study Here"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:textSize="18sp"
@@ -74,50 +74,12 @@ android:layout_height="match_parent">
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/spaces_siebel_drawable" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp">
-
-        <TextView
-            android:id="@+id/tvBuildingCleanliness"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="2.1/5"
-            android:textSize="16dp"
-            android:textColor="#333333"
-            android:drawableLeft="@drawable/bathroom_icon_drawable"/>
-
-        <TextView
-            android:id="@+id/tvBuildingCapacity"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=" 200"
-            android:textSize="16dp"
-            android:textColor="#333333"
-            android:drawableLeft="@drawable/capacity_icon_drawable" />
-
-        <TextView
-            android:id="@+id/tvBuildingHours"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=" Open"
-            android:textSize="16dp"
-            android:textColor="#008000"
-            android:drawableLeft="@drawable/hours_icon_drawable" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/studyHere_butt"
+    <TextView
+        android:id="@+id/tvStopwatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/illini_blue"
-        android:text="Study here!"
-        android:textSize="16dp"
+        android:text="00:41:30"
+        android:textSize="36dp"
         android:textStyle="bold"/>
 </LinearLayout>
 
@@ -142,7 +104,7 @@ android:layout_height="match_parent">
         android:textColor="@android:color/white"
         android:backgroundTint="@android:color/transparent"
         android:textStyle="bold"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

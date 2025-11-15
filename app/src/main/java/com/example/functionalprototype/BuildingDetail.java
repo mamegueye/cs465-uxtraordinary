@@ -2,47 +2,49 @@ package com.example.functionalprototype;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.time.LocalDate;
+
 public class BuildingDetail extends AppCompatActivity {
+
+    private String buildingName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_building_detail);
+        setContentView(R.layout.activity_details);
 
+        // Set back button listener
         Button backButton = findViewById(R.id.back_butt);
-
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(BuildingDetail.this, BuildingList.class);
             startActivity(intent);
         });
 
-        TextView monday = findViewById(R.id.monday);
-        TextView tuesday = findViewById(R.id.tuesday);
-        TextView wednesday = findViewById(R.id.wednesday);
-        TextView thursday = findViewById(R.id.thursday);
-        TextView friday = findViewById(R.id.friday);
-        TextView saturday = findViewById(R.id.saturday);
-        TextView sunday = findViewById(R.id.sunday);
-        TextView cleanliness = findViewById(R.id.cleanliness);
-        TextView cafe = findViewById(R.id.cafe);
+        // Set study here button listener
+        Button studyHereButton = findViewById(R.id.studyHere_butt);
+        studyHereButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, StudyHere.class);
+            intent.putExtra("building_name", buildingName);
+            startActivity(intent);
+        });
 
-        //Days of the week
-        monday.setText("Monday: " + (getIntent().getStringExtra("monday") != null ? getIntent().getStringExtra("monday") : "N/A"));
-        tuesday.setText("Tuesday: " + (getIntent().getStringExtra("tuesday") != null ? getIntent().getStringExtra("tuesday") : "N/A"));
-        wednesday.setText("Wednesday: " + (getIntent().getStringExtra("wednesday") != null ? getIntent().getStringExtra("wednesday") : "N/A"));
-        thursday.setText("Thursday: " + (getIntent().getStringExtra("thursday") != null ? getIntent().getStringExtra("thursday") : "N/A"));
-        friday.setText("Friday: " + (getIntent().getStringExtra("friday") != null ? getIntent().getStringExtra("friday") : "N/A"));
-        saturday.setText("Saturday: " + (getIntent().getStringExtra("saturday") != null ? getIntent().getStringExtra("saturday") : "N/A"));
-        sunday.setText("Sunday: " + (getIntent().getStringExtra("sunday") != null ? getIntent().getStringExtra("sunday") : "N/A"));
+        TextView name = findViewById(R.id.tvBuildingName);
+        TextView cleanliness = findViewById(R.id.tvBuildingCleanliness);
+        TextView capacity = findViewById(R.id.tvBuildingCapacity);
+        TextView hours = findViewById(R.id.tvBuildingHours);
 
-        // Cleanliness
-        Float clean = getIntent().getFloatExtra("cleanliness", -1f);
-        cleanliness.setText("Cleanliness: " + (clean != -1f ? String.valueOf(clean) : "N/A"));
+        Intent intent = getIntent();
+        name.setText(intent.getStringExtra("building_name"));
+        cleanliness.setText(" " + intent.getDoubleExtra("cleanliness", 0.f));
+        capacity.setText(" 200"); // TODO: replace this
+        String currentDayOfWeek = LocalDate.now().getDayOfWeek().name().toLowerCase();
+        hours.setText(" " + intent.getStringExtra(currentDayOfWeek));
 
-        cafe.setText("Cafe: " + (getIntent().getStringExtra("cafe") != null ? getIntent().getStringExtra("cafe") : "N/A"));
+        buildingName = intent.getStringExtra("building_name");
     }
 }

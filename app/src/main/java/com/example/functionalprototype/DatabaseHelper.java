@@ -26,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        // Not used; we use prebuilt DB
     }
 
     @Override
@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void copyDatabase() throws IOException {
-        InputStream input = context.getAssets().open( DATABASE_NAME);
+        InputStream input = context.getAssets().open("databases/" + DATABASE_NAME);
         OutputStream output = new FileOutputStream(databasePath);
 
         byte[] buffer = new byte[1024];

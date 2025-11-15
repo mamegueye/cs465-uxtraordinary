@@ -83,11 +83,12 @@
         <!-- Ashley's Filter Page -->
         <activity
             android:name=".Results"
-            android:exported="false"
-            android:label="Top Study Spaces"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:exported="true" />
+        <activity
+            android:name=".StudyHere"
+            android:exported="true" />
 
-        <!-- Hannahs Filter Page -->
+        <!-- Hannah's Filter Page -->
         <activity
             android:name=".SpaceFiltering"
             android:exported="true">

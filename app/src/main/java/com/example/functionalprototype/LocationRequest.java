@@ -78,14 +78,14 @@ public class LocationRequest extends AppCompatActivity
             Intent intent = new Intent(this, SpaceFiltering.class);
 
             // Carry location preference to the filtering page
-            intent.putExtra("location_preference", "Current Location");
+            intent.putExtra("location_preference", "Thomas M. Siebel Center for Computer Science");
 
             startActivity(intent);
         } else if (v.getId() == R.id.allow_once_button) {
             Intent intent = new Intent(this, SpaceFiltering.class);
 
             // Carry location preference to the filtering page
-            intent.putExtra("location_preference", "Current Location");
+            intent.putExtra("location_preference", "Thomas M. Siebel Center for Computer Science");
 
             startActivity(intent);
         } else if (v.getId() == R.id.dont_allow_button) {

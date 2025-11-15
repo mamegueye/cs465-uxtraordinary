@@ -5,13 +5,20 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.IOException;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 public class Results extends AppCompatActivity {
 
@@ -30,16 +37,20 @@ public class Results extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_building_list);
+        setContentView(R.layout.activity_results);
+
+        // Set back button listener
+        Button backButton = findViewById(R.id.back);
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, SpaceFiltering.class);
+            startActivity(intent);
+        });
 
         recyclerView = findViewById(R.id.buildingRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Get filter data from Intent
         getFilterDataFromIntent();
-
-        // Get user location
-        getUserLocation();
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         try {
@@ -83,21 +94,31 @@ public class Results extends AppCompatActivity {
     // Method to get filter data from the intent
     private void getFilterDataFromIntent() {
         Intent intent = getIntent();
-        filterDistance = intent.getFloatExtra("filter_distance", 0.0f);
+        filterDistance = intent.getFloatExtra("filter_distance", 0.5f);
         filterOpenNow = intent.getBooleanExtra("filter_open_now", false);
         filterCafeFood = intent.getBooleanExtra("filter_cafe_food", false);
         filterLocation = intent.getStringExtra("filter_location");
-        Log.d("getFilterDataFromIntent", filterDistance + " " + filterOpenNow + " " + filterCafeFood + " " + filterLocation );
+        Log.d("FilterDataFromIntent", "filterDistance="+filterDistance);
+        Log.d("FilterDataFromIntent", "filterOpenNow="+filterOpenNow);
+        Log.d("FilterDataFromIntent", "filterCafeFood="+filterCafeFood);
+        Log.d("FilterDataFromIntent", "filterLocation="+filterLocation);
     }
 
     // Method to get user location
-    private void getUserLocation() {
-        // TODO: extract UserLat UserLon from filterLocation
-        UserLat = 40.1106f;
-        UserLon = -88.2073f;
+    private void getUserLonLat(SQLiteDatabase db) {
+        Cursor cursor = db.rawQuery("SELECT building_name, latitude, longitude FROM building_hours", null);
+        if (cursor.moveToFirst()) {
+            do {
+                UserLat = cursor.isNull(cursor.getColumnIndexOrThrow("latitude")) ? null : cursor.getFloat(cursor.getColumnIndexOrThrow("latitude"));
+                UserLon = cursor.isNull(cursor.getColumnIndexOrThrow("longitude")) ? null : cursor.getFloat(cursor.getColumnIndexOrThrow("longitude"));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
     }
 
     private List<Building> getFilteredBuildings(SQLiteDatabase db) {
+        getUserLonLat(db);
+
         List<Building> buildings = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM building_hours", null);
 
@@ -121,7 +142,7 @@ public class Results extends AppCompatActivity {
                 Building building = new Building(buildingName, monday, tuesday, wednesday, thursday, friday, saturday, sunday, cleanliness, latitude, longitude, cafe);
 
                 // Apply filters
-                if (isBuildingMatchingFilter(building)) {
+                if (matchFilter(building)) {
                     buildings.add(building);
                 }
             } while (cursor.moveToNext());
@@ -130,17 +151,37 @@ public class Results extends AppCompatActivity {
         return buildings;
     }
 
-    // Method to check if a building matches the filter criteria
-    private boolean isBuildingMatchingFilter(Building building) {
-        boolean matchesDistance = filterDistance < getDistance(building.latitude, building.longitude, UserLat, UserLon);
-        boolean matchesOpenNow = filterOpenNow; // Add logic to check if the building is open now
-        boolean matchesCafeFood = !filterCafeFood || (building.cafe != null && !building.cafe.isEmpty());
-        boolean matchesLocation = filterLocation == null || building.building_name.contains(filterLocation); // Check if building name matches location filter
+    // Check if a building matches the filter criteria
+    private boolean matchFilter(Building building) {
+        // Compare distance
+        double buildingDistance = calculateDistance(building.latitude, building.longitude, UserLat, UserLon);
+        if (buildingDistance > filterDistance) {
+            Log.d("MatchFailed", building.building_name + " is " + buildingDistance + " miles away.");
+            return false;
+        }
 
-        return matchesDistance && matchesOpenNow && matchesCafeFood && matchesLocation;
+        // Compare current time with opening hours
+        if (filterOpenNow) {
+            LocalTime currentTime = LocalTime.now();
+            int currentDayOfWeek = LocalDate.now().getDayOfWeek().getValue();
+            String[] openingHours = {building.sunday, building.monday, building.tuesday, building.wednesday, building.thursday, building.friday, building.saturday};
+            ArrayList<LocalTime> buildingTimes = parseOpeningHours(openingHours[currentDayOfWeek]);
+            if (currentTime.isBefore(buildingTimes.get(0)) || currentTime.isAfter(buildingTimes.get(1))) {
+                Log.d("MatchFailed", building.building_name + " is opened from " + buildingTimes.get(0) + " to " + buildingTimes.get(1));
+                return false;
+            }
+        }
+
+        // Check for cafe in building
+        if (filterCafeFood && (building.cafe == null || building.cafe.isEmpty())) {
+            Log.d("MatchFailed", building.building_name + "does not have a cafe.");
+            return false;
+        }
+
+        return true;
     }
 
-    private double getDistance(float lat1, float lng1, float lat2, float lng2) {
+    private double calculateDistance(float lat1, float lng1, float lat2, float lng2) {
         double earthRadius = 6371000; //meters
         double dLat = Math.toRadians(lat2-lat1);
         double dLng = Math.toRadians(lng2-lng1);
@@ -148,6 +189,17 @@ public class Results extends AppCompatActivity {
                 Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
                         Math.sin(dLng/2) * Math.sin(dLng/2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        return earthRadius * c;
+        double distanceInMeters = earthRadius * c;
+        return distanceInMeters / 1609.34;
+    }
+
+    // Extract hours as LocalTimes
+    private ArrayList<LocalTime> parseOpeningHours(String openingHours) {
+        ArrayList<LocalTime> times = new ArrayList<>();
+        for (String s : openingHours.split("-")) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[hh:mma][h:mma][hha][ha]");
+            times.add(LocalTime.from(formatter.parse(s)));
+        }
+        return times;
     }
 }
