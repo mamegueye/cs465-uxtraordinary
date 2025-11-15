@@ -127,7 +127,6 @@ android:layout_height="match_parent">
     android:layout_width="0dp"
     android:layout_height="56dp"
     android:background="@color/illini_orange"
-    android:padding="12dp"
     android:gravity="center"
     android:columnCount="1"
     app:layout_constraintBottom_toBottomOf="parent"

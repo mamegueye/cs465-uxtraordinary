@@ -78,7 +78,7 @@ android:layout_height="match_parent">
         android:id="@+id/tvStopwatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00:41:30"
+        android:text="00:00:00"
         android:textSize="36dp"
         android:textStyle="bold"/>
 </LinearLayout>
