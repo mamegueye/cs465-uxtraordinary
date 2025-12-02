@@ -98,56 +98,16 @@
                     android:text="@string/reporting_floor"
                     android:layout_marginTop="16dp"/>
 
-                <!-- Choices for floors; from geeksforgeeks -->
-                <RadioGroup
+                <!-- Choices for floors; use dropdown since radio took too much space -->
+                <!-- Dropdown for choices; from Android docs -->
+                <Spinner
                     android:id="@+id/report_floor_choices"
+                    android:prompt="@string/reporting_prompt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:spinnerMode="dropdown"
                     android:gravity="center">
-
-                    <RadioButton
-                        android:id="@+id/floor_basement"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/floor_basement" />
-
-                    <RadioButton
-                        android:id="@+id/floor_first"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/floor_first" />
-
-                    <RadioButton
-                        android:id="@+id/floor_second"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/floor_second" />
-
-                    <RadioButton
-                        android:id="@+id/floor_third"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/floor_third" />
-
-                    <RadioButton
-                        android:id="@+id/floor_fourth"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/floor_fourth" />
-
-                    <RadioButton
-                        android:id="@+id/floor_fifth"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/floor_fifth" />
-
-                    <RadioButton
-                        android:id="@+id/floor_other"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/floor_other" />
-                </RadioGroup>
+                </Spinner>
             </LinearLayout>
 
             <!-- Enter your report comments; 10/22 Lecture -->
@@ -163,10 +123,13 @@
                     android:layout_marginTop="16dp"/>
                 <EditText
                     android:id="@+id/user_enter_report"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"
-                    android:minLines="3"/>
+                    android:background="#EBEBEB"
+                    android:padding="12dp"
+                    android:minLines="10"
+                    android:gravity="top|start"/>
             </LinearLayout>
         </LinearLayout>
 

@@ -42,6 +42,18 @@
     </string-array>
 
     <!-- Reporting floor options -->
+    <!-- As a dropdown -->
+    <string-array name="floor_options">
+        <item>Choose an option</item>
+        <item>Basement</item>
+        <item>First Floor</item>
+        <item>Second Floor</item>
+        <item>Third Floor</item>
+        <item>Fourth Floor</item>
+        <item>Fifth Floor</item>
+        <item>Other</item>
+    </string-array>
+    <!-- As radio buttons -->
     <string name="floor_basement">Basement</string>
     <string name="floor_first">First Floor</string>
     <string name="floor_second">Second Floor</string>

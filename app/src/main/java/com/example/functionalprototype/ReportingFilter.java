@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 public class ReportingFilter extends AppCompatActivity
 implements AdapterView.OnItemSelectedListener,
-        RadioGroup.OnCheckedChangeListener,
         TextView.OnEditorActionListener,
         View.OnClickListener {
 
@@ -30,7 +29,7 @@ implements AdapterView.OnItemSelectedListener,
     private Spinner reportBuildingAnswer;
 
     // User floor choice
-    private RadioGroup reportFloorAnswer;
+    private Spinner reportFloorAnswer;
 
     // User report comments/text
     private EditText userReportAnswer;
@@ -53,8 +52,21 @@ implements AdapterView.OnItemSelectedListener,
         reportBuildingAnswer.setOnItemSelectedListener(this);
 
         // Grab Floor choice
-        reportFloorAnswer = (RadioGroup) findViewById(R.id.report_floor_choices);
-        reportFloorAnswer.setOnCheckedChangeListener(this);
+        reportFloorAnswer = (Spinner) findViewById(R.id.report_floor_choices);
+        // ----- From android docs ----
+        // https://developer.android.com/develop/ui/views/components/spinner#java
+        // Create an ArrayAdapter using the string array and a default spinner layout.
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.floor_options,
+                android.R.layout.simple_spinner_item
+        );
+        // Specify the layout to use when the list of choices appears.
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner.
+        reportFloorAnswer.setAdapter(adapter);
+        // Get dropdown answer
+        reportFloorAnswer.setOnItemSelectedListener(this);
 
         // Grab Report Comments/Text
         userReportAnswer = (EditText) findViewById(R.id.user_enter_report);
@@ -81,6 +93,7 @@ implements AdapterView.OnItemSelectedListener,
     }
 
     // Get building user wants to report
+    // Get the user's floor they want to report
     @Override
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
 
@@ -103,18 +116,7 @@ implements AdapterView.OnItemSelectedListener,
     }
 
 
-    // Get the user's floor they want to report
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        // Get the user's selected radio button
-        RadioButton selectedFloor = findViewById(checkedId);
 
-        // Display the user's selected floor to report
-        if (selectedFloor != null) {
-            String userChoice = selectedFloor.getText().toString();
-            Toast.makeText(this, "Selected floor: " + userChoice, Toast.LENGTH_SHORT).show();
-        }
-    }
 
 
 
@@ -143,14 +145,12 @@ implements AdapterView.OnItemSelectedListener,
                 return;
             }
 
-            // 2) What floor do they want to report?
-            int getSelectedFloorId = reportFloorAnswer.getCheckedRadioButtonId();
-            if (getSelectedFloorId == -1) {
+            // 2) Floor choice (new - dropdown instead of radio)
+            String floorChoice = reportFloorAnswer.getSelectedItem().toString();
+            if (floorChoice.equals("Choose an option")) {
                 Toast.makeText(this, "Please select a floor.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            RadioButton selectedFloor = findViewById(getSelectedFloorId);
-            String floorChoice = selectedFloor.getText().toString();
 
 
             // 3) What is their report blurb?
