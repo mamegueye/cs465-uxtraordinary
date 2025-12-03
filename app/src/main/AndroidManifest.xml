@@ -53,6 +53,11 @@
         <!-- /////////////////////// -->
         <!-- /////////////////////// -->
 
+        <!-- Stella's Menu Page -->
+        <activity
+            android:name=".Menu"
+            android:exported="true" />
+
         <!-- Stella's Help Page -->
         <activity
             android:name=".Help"

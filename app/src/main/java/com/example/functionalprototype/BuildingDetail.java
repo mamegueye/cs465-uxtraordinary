@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.time.LocalDate;
@@ -29,19 +30,19 @@ public class BuildingDetail extends AppCompatActivity {
 
         // Set menu button listener
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
-        Button menuButton = findViewById(R.id.menu_button);
+        TextView menuButton = findViewById(R.id.menu_button);
         Button drawerBuildings = findViewById(R.id.buildings_list_button);
         Button drawerReport = findViewById(R.id.report_issue_button);
 
-        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
+        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
         drawerBuildings.setOnClickListener(v -> {
             startActivity(new Intent(BuildingDetail.this, BuildingList.class));
-            drawerLayout.closeDrawer(Gravity.START);
+            drawerLayout.closeDrawer(GravityCompat.START);
         });
 
         drawerReport.setOnClickListener(v -> {
             startActivity(new Intent(BuildingDetail.this, ReportFeature.class));
-            drawerLayout.closeDrawer(Gravity.START);
+            drawerLayout.closeDrawer(GravityCompat.START);
         });
 
 

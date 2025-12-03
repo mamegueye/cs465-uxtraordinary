@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -52,22 +53,22 @@ public class MainActivity extends AppCompatActivity {
         btnTutorialGotIt.setOnClickListener(hideOverlay);
 
         TextView menuButton = findViewById(R.id.menuIcon);
-        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
+        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
         // Drawer menu buttons
 
         Button drawerBuildings = findViewById(R.id.buildings_list_button);
         Button drawerReport = findViewById(R.id.report_issue_button);
-        RelativeLayout drawerTopBar = findViewById(R.id.top_bar);
+        RelativeLayout drawerTopBar = findViewById(R.id.drawer_top_bar);
 
         drawerBuildings.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, BuildingList.class));
-            drawerLayout.closeDrawer(Gravity.START);
+            drawerLayout.closeDrawer(GravityCompat.START);
         });
 
         drawerReport.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, ReportFeature.class));
-            drawerLayout.closeDrawer(Gravity.START);
+            drawerLayout.closeDrawer(GravityCompat.START);
         });
 
         ViewCompat.setOnApplyWindowInsetsListener(drawerTopBar, (v, insets) -> {
