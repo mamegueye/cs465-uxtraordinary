@@ -176,15 +176,27 @@ public class Results extends AppCompatActivity {
     }
 
     private boolean matchOpenNow(Building building) {
-        LocalTime currentTime = LocalTime.now();
         int currentDayOfWeek = LocalDate.now().getDayOfWeek().getValue();
-        String[] openingHours = {building.sunday, building.monday, building.tuesday, building.wednesday, building.thursday, building.friday, building.saturday};
-        ArrayList<LocalTime> buildingTimes = parseOpeningHours(openingHours[currentDayOfWeek]);
-        if (currentTime.isBefore(buildingTimes.get(0)) || currentTime.isAfter(buildingTimes.get(1))) {
-            Log.d("MatchFailed", building.building_name + " is opened from " + buildingTimes.get(0) + " to " + buildingTimes.get(1));
+        String[] openingHours = {
+                building.sunday, building.monday, building.tuesday,
+                building.wednesday, building.thursday, building.friday,
+                building.saturday
+        };
+
+        String hoursToday = openingHours[currentDayOfWeek];
+
+        // If locked / closed / invalid → NOT open
+        if (hoursToday == null ||
+                hoursToday.equalsIgnoreCase("LOCKED") ||
+                !hoursToday.contains("-")) {
             return false;
         }
-        return true;
+
+        ArrayList<LocalTime> times = parseOpeningHours(hoursToday);
+        if (times.size() < 2) return false; // avoid crash
+
+        LocalTime current = LocalTime.now();
+        return !(current.isBefore(times.get(0)) || current.isAfter(times.get(1)));
     }
 
     private boolean matchCafeFood(Building building) {
@@ -210,9 +222,15 @@ public class Results extends AppCompatActivity {
     // Extract hours as LocalTimes
     private ArrayList<LocalTime> parseOpeningHours(String openingHours) {
         ArrayList<LocalTime> times = new ArrayList<>();
+        if (openingHours == null ||
+                openingHours.equalsIgnoreCase("LOCKED") ||
+                !openingHours.contains("-")) {
+            return times; // return empty list
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[hh:mma][h:mma][hha][ha]");
         for (String s : openingHours.split("-")) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[hh:mma][h:mma][hha][ha]");
-            times.add(LocalTime.from(formatter.parse(s)));
+            s = s.trim();
+            times.add(LocalTime.parse(s, formatter));
         }
         return times;
     }

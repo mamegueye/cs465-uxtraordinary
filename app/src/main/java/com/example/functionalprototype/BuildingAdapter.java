@@ -70,27 +70,33 @@ public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHo
     }
 
     private boolean matchOpenNow(Building building) {
-        LocalTime currentTime = LocalTime.now();
         String openingHours = getOpeningHours(building);
-        ArrayList<LocalTime> buildingTimes = parseOpeningHours(openingHours);
-        if (currentTime.isBefore(buildingTimes.get(0)) || currentTime.isAfter(buildingTimes.get(1))) {
-            Log.d("MatchFailed", building.building_name + " is opened from " + buildingTimes.get(0) + " to " + buildingTimes.get(1));
+
+        // If building is locked or closed today
+        if (openingHours == null || openingHours.equalsIgnoreCase("LOCKED") || !openingHours.contains("-")) {
             return false;
         }
-        return true;
+
+        LocalTime currentTime = LocalTime.now();
+        ArrayList<LocalTime> buildingTimes = parseOpeningHours(openingHours);
+
+        return !(currentTime.isBefore(buildingTimes.get(0)) || currentTime.isAfter(buildingTimes.get(1)));
     }
 
-    // Extract hours as LocalTimes
     private ArrayList<LocalTime> parseOpeningHours(String openingHours) {
         ArrayList<LocalTime> times = new ArrayList<>();
+
+        if (openingHours == null || openingHours.equalsIgnoreCase("LOCKED")) {
+            return times; // empty list
+        }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[hh:mma][h:mma][hha][ha]");
         for (String s : openingHours.split("-")) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[hh:mma][h:mma][hha][ha]");
-            times.add(LocalTime.from(formatter.parse(s)));
+            s = s.trim();
+            times.add(LocalTime.parse(s, formatter));
         }
         return times;
     }
 
-    // Compare current time with provided building's opening hours
     private String getOpeningHours(Building building) {
         int currentDayOfWeek = LocalDate.now().getDayOfWeek().getValue();
         String[] openingHours = {building.sunday, building.monday, building.tuesday, building.wednesday, building.thursday, building.friday, building.saturday};
