@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.util.ArrayList;
 
@@ -72,13 +74,22 @@ implements AdapterView.OnItemSelectedListener,
         userReportAnswer = (EditText) findViewById(R.id.user_enter_report);
         userReportAnswer.setOnEditorActionListener(this);
 
-        // Added by Stella
+        // Set menu button listener
+        DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         Button menuButton = findViewById(R.id.menu_button);
-        menuButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ReportingFilter.this, Menu.class);
-            startActivity(intent);
+        Button drawerBuildings = findViewById(R.id.buildings_list_button);
+        Button drawerReport = findViewById(R.id.report_issue_button);
+
+        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
+        drawerBuildings.setOnClickListener(v -> {
+            startActivity(new Intent(ReportingFilter.this, BuildingList.class));
+            drawerLayout.closeDrawer(Gravity.START);
         });
 
+        drawerReport.setOnClickListener(v -> {
+            startActivity(new Intent(ReportingFilter.this, ReportFeature.class));
+            drawerLayout.closeDrawer(Gravity.START);
+        });
         // The user has pressed the 'Next' Button
         nextButton = (Button) findViewById(R.id.next_button_report_filter);
         nextButton.setOnClickListener(this);

@@ -1,129 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LocationRequest">
 
-    <!-- Entire screen container -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="match_parent">
 
-        <!-- Top Navbar -->
-        <RelativeLayout
-            android:id="@+id/top_bar"
+        <!-- Entire screen container -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:gravity="center_vertical"
-            android:background="#E84A27"> <!-- UIUC Orange -->
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
-            <Button
-                android:id="@+id/menu_button"
-                android:layout_width="wrap_content"
+            <!-- Top Navbar -->
+            <RelativeLayout
+                android:id="@+id/top_bar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/menu_button"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@android:color/transparent"
-                android:textStyle="bold"
-                android:layout_alignParentLeft="true"/>
+                android:padding="12dp"
+                android:gravity="center_vertical"
+                android:background="#E84A27"> <!-- UIUC Orange -->
+
+                <Button
+                    android:id="@+id/menu_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/menu_button"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:layout_alignParentLeft="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/request_location_header"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="16dp"/>
+
+                <Button
+                    android:id="@+id/home_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_button"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <!-- Middle content -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:layout_marginTop="40dp">
+
+                <TextView
+                    android:id="@+id/location_prompt_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/request_location_prompt"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginBottom="24dp" />
+
+                <!-- FIXED BUTTONS using MaterialButton -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/allow_while_using_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/allow_while_using"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="#202A44"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/allow_once_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/allow_once"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="#202A44"
+                    android:layout_marginBottom="12dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/dont_allow_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dont_allow"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="#202A44"/>
+            </LinearLayout>
+
+            <!-- Bottom Navigation Bar -->
+            <GridLayout
+                android:id="@+id/bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:columnCount="2"
+                android:background="#E84A27">
+
+                <Button
+                    android:id="@+id/back_button_location_request"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/back_button"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@android:color/transparent"
+                    android:textStyle="bold"
+                    android:layout_columnWeight="1"/>
+            </GridLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Sliding Drawer Menu -->
+    <LinearLayout
+        android:id="@+id/drawerMenu"
+        android:layout_width="260dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:fitsSystemWindows="true">
+
+        <RelativeLayout
+            android:id="@+id/drawer_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:gravity="center_vertical"
+            android:background="@color/illini_orange"
+            android:elevation="4dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/request_location_header"
+                android:text="Menu"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:textSize="18sp"
-                android:layout_centerInParent="true"
-                android:layout_marginStart="16dp"/>
-
-            <Button
-                android:id="@+id/home_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home_button"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@android:color/transparent"
-                android:textStyle="bold"
-                android:layout_alignParentRight="true"/>
+                android:textSize="20sp"
+                android:gravity="center"/>
         </RelativeLayout>
 
-        <!-- Middle content -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:layout_marginTop="40dp">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-            <TextView
-                android:id="@+id/location_prompt_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/request_location_prompt"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_marginBottom="24dp" />
-
-            <!-- FIXED BUTTONS using MaterialButton -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/allow_while_using_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/allow_while_using"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:backgroundTint="#202A44"
-                android:layout_marginBottom="12dp"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/allow_once_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/allow_once"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:backgroundTint="#202A44"
-                android:layout_marginBottom="12dp"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/dont_allow_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dont_allow"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:backgroundTint="#202A44"/>
-        </LinearLayout>
-
-        <!-- Bottom Navigation Bar -->
-        <GridLayout
-            android:id="@+id/bottom_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:columnCount="2"
-            android:background="#E84A27">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
             <Button
-                android:id="@+id/back_button_location_request"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/back_button"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@android:color/transparent"
+                android:id="@+id/buildings_list_button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Buildings List"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_columnWeight="1"/>
-        </GridLayout>
+                android:layout_marginBottom="24dp"
+                android:backgroundTint="@color/illini_blue"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/report_issue_button"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="Report an Issue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:backgroundTint="@color/illini_blue"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

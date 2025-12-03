@@ -5,9 +5,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.IOException;
@@ -47,10 +49,20 @@ public class Results extends AppCompatActivity {
         });
 
         // Set menu button listener
+        DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         Button menuButton = findViewById(R.id.menu_button);
-        menuButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Menu.class);
-            startActivity(intent);
+        Button drawerBuildings = findViewById(R.id.buildings_list_button);
+        Button drawerReport = findViewById(R.id.report_issue_button);
+
+        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
+        drawerBuildings.setOnClickListener(v -> {
+            startActivity(new Intent(Results.this, BuildingList.class));
+            drawerLayout.closeDrawer(Gravity.START);
+        });
+
+        drawerReport.setOnClickListener(v -> {
+            startActivity(new Intent(Results.this, ReportFeature.class));
+            drawerLayout.closeDrawer(Gravity.START);
         });
 
         // Set home button listener

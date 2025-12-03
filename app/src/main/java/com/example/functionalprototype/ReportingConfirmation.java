@@ -2,11 +2,13 @@ package com.example.functionalprototype;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 public class ReportingConfirmation extends AppCompatActivity
     implements View.OnClickListener{
@@ -59,11 +61,21 @@ public class ReportingConfirmation extends AppCompatActivity
             commentText.setText("(No comment entered)");
         }
 
-        // Added by Stella
+        // Set menu button listener
+        DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         Button menuButton = findViewById(R.id.menu_button);
-        menuButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ReportingConfirmation.this, Menu.class);
-            startActivity(intent);
+        Button drawerBuildings = findViewById(R.id.buildings_list_button);
+        Button drawerReport = findViewById(R.id.report_issue_button);
+
+        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
+        drawerBuildings.setOnClickListener(v -> {
+            startActivity(new Intent(ReportingConfirmation.this, BuildingList.class));
+            drawerLayout.closeDrawer(Gravity.START);
+        });
+
+        drawerReport.setOnClickListener(v -> {
+            startActivity(new Intent(ReportingConfirmation.this, ReportFeature.class));
+            drawerLayout.closeDrawer(Gravity.START);
         });
 
         // The user has pressed the 'Next' Button
