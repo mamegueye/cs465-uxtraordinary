@@ -48,7 +48,8 @@
                     android:textStyle="bold"
                     android:textSize="20sp"
                     android:layout_centerInParent="true"
-                    android:layout_marginStart="16dp"/>
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="sans-serif"/>
 
                 <Button
                     android:id="@+id/home_button"
@@ -58,7 +59,9 @@
                     android:backgroundTint="@android:color/transparent"
                     android:text="@string/home_button"
                     android:textColor="@android:color/white"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"/>
             </RelativeLayout>
 
             <!-- What do you want to report? -->
@@ -76,7 +79,8 @@
                     android:text="@string/reporting_prompt"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:fontFamily="@font/roboto"/>
 
                 <!-- Choices for reporting -->
                 <LinearLayout
@@ -94,7 +98,8 @@
                         android:gravity="center"
                         android:textAlignment="center"
                         android:entries="@array/reporting_options"
-                        android:layout_marginTop="16dp">
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/roboto">
                     </Spinner>
                 </LinearLayout>
             </LinearLayout>
@@ -120,7 +125,9 @@
                     android:textColor="@android:color/white"
                     android:backgroundTint="@android:color/transparent"
                     android:textStyle="bold"
-                    android:layout_columnWeight="1"/>
+                    android:layout_columnWeight="1"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"/>
 
                 <Button
                     android:id="@+id/next_button_report_feature"
@@ -130,7 +137,9 @@
                     android:textColor="@android:color/white"
                     android:backgroundTint="@android:color/transparent"
                     android:textStyle="bold"
-                    android:layout_columnWeight="1"/>
+                    android:layout_columnWeight="1"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"/>
             </GridLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -186,7 +195,8 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/illini_blue"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif"/>
 
             <Button
                 android:id="@+id/report_issue_button"
@@ -196,7 +206,8 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:backgroundTint="@color/illini_blue"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif"/>
 
             <View
                 android:layout_width="match_parent"

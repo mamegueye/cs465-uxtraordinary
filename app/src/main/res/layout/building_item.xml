@@ -21,7 +21,8 @@
             android:text="University of Illinois"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/roboto"/>
 
         <!--
         TextView
@@ -46,7 +47,8 @@
                 android:text="N/A"
                 android:textSize="16dp"
                 android:textColor="@android:color/white"
-                android:drawableLeft="@drawable/bathroom_icon_drawable"/>
+                android:drawableLeft="@drawable/bathroom_icon_drawable"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/tvBuildingCapacity"
@@ -57,7 +59,8 @@
                 android:text="  N/A"
                 android:textSize="16dp"
                 android:textColor="@android:color/white"
-                android:drawableLeft="@drawable/capacity_icon_drawable" />
+                android:drawableLeft="@drawable/capacity_icon_drawable"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/tvBuildingHours"
@@ -68,7 +71,8 @@
                 android:text="  N/A"
                 android:textSize="16dp"
                 android:textColor="@android:color/white"
-                android:drawableLeft="@drawable/hours_icon_drawable" />
+                android:drawableLeft="@drawable/hours_icon_drawable"
+                android:fontFamily="@font/roboto"/>
 
         </LinearLayout>
     </LinearLayout>

@@ -37,8 +37,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Details"
+                android:fontFamily="sans-serif"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
@@ -63,63 +64,73 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:paddingBottom="8dp" />
+                android:paddingBottom="8dp"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/monday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp"/>
+                android:textSize="24sp"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/tuesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/wednesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/thursday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/friday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/saturday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/sunday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/cleanliness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/cafe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                android:fontFamily="@font/roboto"/>
         </LinearLayout>
 
         <!-- Bottom Bar -->
@@ -143,7 +154,9 @@
                 android:textColor="@android:color/white"
                 android:backgroundTint="@android:color/transparent"
                 android:textStyle="bold"
-                android:layout_gravity="center"/>
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif"/>
         </GridLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -174,7 +187,8 @@
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:fontFamily="sans-serif"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -195,11 +209,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:text="Buildings List"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/illini_blue"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif"/>
 
             <Button
                 android:id="@+id/report_issue_button"
@@ -209,7 +224,8 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:backgroundTint="@color/illini_blue"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif"/>
 
             <View
                 android:layout_width="match_parent"

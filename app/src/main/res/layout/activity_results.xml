@@ -35,7 +35,8 @@
                 android:text="Recommended Study Spaces"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="16dp"/>
 
@@ -47,7 +48,10 @@
                 android:textColor="@android:color/white"
                 android:backgroundTint="@android:color/transparent"
                 android:textStyle="bold"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"/>
+
         </RelativeLayout>
 
         <!-- RecyclerView for the building list -->
@@ -82,7 +86,9 @@
                 android:textColor="@android:color/white"
                 android:backgroundTint="@android:color/transparent"
                 android:textStyle="bold"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"/>
         </GridLayout>
 
         <LinearLayout
@@ -112,16 +118,18 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#222222"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto"/>
 
                 <TextView
                     android:id="@+id/tutorialBody"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Scroll through the recommended study spaces and tap one to see more details about the building."
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textColor="#444444"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/roboto"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -134,7 +142,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Skip"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif" />
 
                     <Button
                         android:id="@+id/btnTutorialGotIt"
@@ -142,7 +152,9 @@
                         android:layout_height="wrap_content"
                         android:text="Got it"
                         android:textAllCaps="false"
-                        android:layout_marginStart="8dp" />
+                        android:layout_marginStart="8dp"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -200,7 +212,8 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/illini_blue"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif"/>
 
             <Button
                 android:id="@+id/report_issue_button"
@@ -210,7 +223,8 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:backgroundTint="@color/illini_blue"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif"/>
 
             <View
                 android:layout_width="match_parent"

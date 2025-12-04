@@ -36,7 +36,8 @@
                 android:text="Filter"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:textSize="18sp"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="16dp"/>
 
@@ -48,7 +49,9 @@
                 android:textColor="@android:color/white"
                 android:backgroundTint="@android:color/transparent"
                 android:textStyle="bold"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"/>
         </RelativeLayout>
 
 
@@ -66,7 +69,8 @@
                 android:text="Current Location"
                 android:textColor="#222222"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto"/>
 
             <TextView
                 android:id="@+id/tvCurrentLocation"
@@ -75,7 +79,8 @@
                 android:layout_marginTop="4dp"
                 android:text="PLACEHOLDER"
                 android:textColor="#666666"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto"/>
 
             <!-- Divider -->
             <View
@@ -93,7 +98,8 @@
                 android:text="Distance"
                 android:textColor="#222222"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -109,14 +115,16 @@
                     android:text="0.5 miles"
                     android:textColor="#4BA3F7"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Max: 5.0 miles"
                     android:textColor="#666666"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"/>
             </LinearLayout>
 
             <SeekBar
@@ -139,7 +147,8 @@
                     android:layout_height="wrap_content"
                     android:text="0.0"
                     android:textColor="#999999"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"/>
 
                 <View
                     android:layout_width="0dp"
@@ -151,7 +160,8 @@
                     android:layout_height="wrap_content"
                     android:text="5.0"
                     android:textColor="#999999"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:fontFamily="@font/roboto"/>
             </LinearLayout>
 
             <!-- Divider -->
@@ -170,7 +180,8 @@
                 android:text="Study Space Type"
                 android:textColor="#222222"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto"/>
 
             <CheckBox
                 android:id="@+id/checkBoxOpenNow"
@@ -180,7 +191,8 @@
                 android:buttonTint="#4BA3F7"
                 android:text="Open Now"
                 android:textColor="#666666"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto"/>
 
 
             <!-- Divider -->
@@ -199,7 +211,8 @@
                 android:text="Facility"
                 android:textColor="#222222"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/roboto"/>
 
             <CheckBox
                 android:id="@+id/checkBoxCafeFood"
@@ -209,7 +222,9 @@
                 android:buttonTint="#4BA3F7"
                 android:text="Cafe / Food"
                 android:textColor="#666666"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto"/>
+
 
         </LinearLayout>
 
@@ -225,7 +240,8 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#4BA3F7" />
+            android:backgroundTint="#4BA3F7"
+            android:fontFamily="@font/roboto"/>
         <GridLayout
             android:id="@+id/bottom_bar"
             android:layout_width="match_parent"
@@ -242,7 +258,9 @@
                 android:textColor="@android:color/white"
                 android:backgroundTint="@android:color/transparent"
                 android:textStyle="bold"
-                android:layout_columnWeight="1"/>
+                android:layout_columnWeight="1"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"/>
         </GridLayout>
     </LinearLayout>
 </ScrollView>

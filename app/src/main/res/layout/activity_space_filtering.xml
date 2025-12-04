@@ -45,7 +45,8 @@
                     android:text="@string/UIUC_space_header"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif"
                     android:layout_centerInParent="true"
                     android:layout_marginStart="16dp"/>
 
@@ -57,7 +58,9 @@
                     android:textColor="@android:color/white"
                     android:backgroundTint="@android:color/transparent"
                     android:textStyle="bold"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentRight="true"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"/>
             </RelativeLayout>
 
             <!-- Begin Filtering -->
@@ -81,8 +84,9 @@
                         android:layout_height="wrap_content"
                         android:text="@string/current_location_header"
                         android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto"/>
 
                     <TextView
                         android:id="@+id/tvCurrentLocation"
@@ -91,7 +95,8 @@
                         android:layout_marginTop="4dp"
                         android:text="PLACEHOLDER"
                         android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto"/>
                 </LinearLayout>
 
                 <!-- Distance Section -->
@@ -107,8 +112,9 @@
                         android:layout_height="wrap_content"
                         android:text="@string/distance_header"
                         android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -124,14 +130,16 @@
                             android:text="@string/placeholder_miles"
                             android:textColor="#4BA3F7"
                             android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:fontFamily="@font/roboto"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/max_miles"
                             android:textColor="#999999"
-                            android:textSize="12sp" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/roboto"/>
                     </LinearLayout>
 
                     <SeekBar
@@ -154,7 +162,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/min_miles_label"
                             android:textColor="#999999"
-                            android:textSize="12sp" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/roboto"/>
 
                         <View
                             android:layout_width="0dp"
@@ -166,7 +175,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/max_miles_label"
                             android:textColor="#999999"
-                            android:textSize="12sp" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/roboto"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -190,8 +200,9 @@
                         android:layout_height="wrap_content"
                         android:text="@string/study_space_type"
                         android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto"/>
 
                     <CheckBox
                         android:id="@+id/checkBoxOpenNow"
@@ -201,7 +212,8 @@
                         android:buttonTint="#4BA3F7"
                         android:text="@string/open_now"
                         android:textColor="#666666"
-                        android:textSize="14sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto"/>
                 </LinearLayout>
 
                 <!-- Divider -->
@@ -224,8 +236,9 @@
                         android:layout_height="wrap_content"
                         android:text="@string/facility_label"
                         android:textColor="#333333"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto"/>
 
                     <CheckBox
                         android:id="@+id/checkBoxCafeFood"
@@ -235,7 +248,9 @@
                         android:buttonTint="#4BA3F7"
                         android:text="@string/cafe_food"
                         android:textColor="#666666"
-                        android:textSize="14sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto"
+                        />
                 </LinearLayout>
 
                 <!-- Spacer -->
@@ -254,7 +269,9 @@
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:padding="16dp" />
+                    android:padding="16dp"
+                    android:fontFamily="@font/roboto"
+                    />
             </LinearLayout>
 
             <!-- /////////////////////////////////////// -->
@@ -277,7 +294,9 @@
                     android:textColor="@android:color/white"
                     android:backgroundTint="@android:color/transparent"
                     android:textStyle="bold"
-                    android:layout_columnWeight="1"/>
+                    android:layout_columnWeight="1"
+                    android:textSize="16sp"
+                    android:fontFamily="sans-serif"/>
             </GridLayout>
         </LinearLayout>
 
@@ -308,7 +327,8 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="#222222"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/roboto"/>
 
                 <TextView
                     android:id="@+id/tutorialBody"
@@ -317,7 +337,8 @@
                     android:text="Use distance, Open now, and Cafe/Food to narrow down the study spaces that fit what you want."
                     android:textSize="15sp"
                     android:textColor="#444444"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/roboto"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -330,7 +351,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Skip"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif"/>
 
                     <Button
                         android:id="@+id/btnTutorialGotIt"
@@ -338,7 +361,9 @@
                         android:layout_height="wrap_content"
                         android:text="Got it"
                         android:textAllCaps="false"
-                        android:layout_marginStart="8dp" />
+                        android:layout_marginStart="8dp"
+                        android:textSize="20sp"
+                        android:fontFamily="sans-serif"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -396,7 +421,8 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/illini_blue"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif"/>
 
             <Button
                 android:id="@+id/report_issue_button"
@@ -406,7 +432,8 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:backgroundTint="@color/illini_blue"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif"/>
 
             <View
                 android:layout_width="match_parent"
