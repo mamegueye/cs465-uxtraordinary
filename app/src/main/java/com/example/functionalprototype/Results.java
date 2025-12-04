@@ -210,7 +210,7 @@ public class Results extends AppCompatActivity {
         // Compare distance
         double buildingDistance = calculateDistance(building.latitude, building.longitude, UserLat, UserLon);
         if (buildingDistance > filterDistance) {
-            Log.d("MatchFailed", building.building_name + " is " + buildingDistance + " miles away.");
+            Log.d("MatchFailed", building.building_name + " is too far away, at " + buildingDistance + " miles.");
             return false;
         }
         return true;
@@ -248,7 +248,7 @@ public class Results extends AppCompatActivity {
         return true;
     }
 
-    private double calculateDistance(float lat1, float lng1, float lat2, float lng2) {
+    private Float calculateDistance(float lat1, float lng1, float lat2, float lng2) {
         double earthRadius = 6371000; //meters
         double dLat = Math.toRadians(lat2-lat1);
         double dLng = Math.toRadians(lng2-lng1);
@@ -257,7 +257,10 @@ public class Results extends AppCompatActivity {
                         Math.sin(dLng/2) * Math.sin(dLng/2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
         double distanceInMeters = earthRadius * c;
-        return distanceInMeters / 1609.34;
+        Log.d("calculateDistance", String.format(
+                "Distance between (%f, %f) and (%f, %f) is %f meters.",
+                lat1, lng1, lat2, lng2, distanceInMeters));
+        return (float) (distanceInMeters / 1609.34);
     }
 
     // Extract hours as LocalTimes

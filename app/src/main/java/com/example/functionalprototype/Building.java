@@ -1,5 +1,12 @@
 package com.example.functionalprototype;
 
+import android.util.Log;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 public class Building {
     public String building_name;
     public String monday;
@@ -14,6 +21,7 @@ public class Building {
     public Float longitude;
     public String cafe;
 
+
     public Building(String building_name, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday, Float cleanliness, Float latitude, Float longitude, String cafe) {
         this.building_name = building_name;
         this.monday = monday;
@@ -27,5 +35,48 @@ public class Building {
         this.latitude = latitude;
         this.longitude = longitude;
         this.cafe = cafe;
+    }
+
+    public String getHoursToday() {
+        int currentDayOfWeek = LocalDate.now().getDayOfWeek().getValue();
+        String[] hours = {
+                this.sunday, this.monday, this.tuesday,
+                this.wednesday, this.thursday, this.friday,
+                this.saturday
+        };
+        return hours[currentDayOfWeek];
+    }
+
+    public float calculateDistanceFrom(float lat, float lng) {
+        double earthRadius = 6371000; //meters
+        double dLat = Math.toRadians(this.latitude-lat);
+        double dLng = Math.toRadians(this.longitude-lng);
+        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(Math.toRadians(this.latitude)) * Math.cos(Math.toRadians(lat)) *
+                        Math.sin(dLng/2) * Math.sin(dLng/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double distanceInMeters = earthRadius * c;
+        Log.d("calculateDistance", String.format(
+                "Distance between (%f, %f) and (%f, %f) is %f meters.",
+                this.latitude, this.longitude, lat, lng, distanceInMeters));
+        return (float) (distanceInMeters / 1609.34);
+    }
+
+    public boolean isOpenNow() {
+        ArrayList<LocalTime> openingAndClosing = parseHours(this.getHoursToday());
+        LocalTime opening = openingAndClosing.get(0);
+        LocalTime closing = openingAndClosing.get(1);
+        LocalTime current = LocalTime.now();
+        return !(current.isBefore(opening) || current.isAfter(closing));
+    }
+
+    private ArrayList<LocalTime> parseHours(String hours) {
+        ArrayList<LocalTime> openingAndClosing = new ArrayList<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[hh:mma][h:mma][hha][ha]");
+        for (String s : hours.split("-")) {
+            s = s.trim();
+            openingAndClosing.add(LocalTime.parse(s, formatter));
+        }
+        return openingAndClosing;
     }
 }
