@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnTutorialGotIt;
 
     private DrawerLayout drawerLayout;
+    private boolean inTutorial = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +47,19 @@ public class MainActivity extends AppCompatActivity {
         btnTutorialSkip = findViewById(R.id.btnTutorialSkip);
         btnTutorialGotIt = findViewById(R.id.btnTutorialGotIt);
 
-        btnTutorial.setOnClickListener(v -> tutorialOverlay.setVisibility(View.VISIBLE));
+        btnTutorial.setOnClickListener(v -> {
+            inTutorial = true;
+            tutorialOverlay.setVisibility(View.VISIBLE);
+        });
 
-        View.OnClickListener hideOverlay = v -> tutorialOverlay.setVisibility(View.GONE);
-        btnTutorialSkip.setOnClickListener(hideOverlay);
-        btnTutorialGotIt.setOnClickListener(hideOverlay);
+        btnTutorialSkip.setOnClickListener(v -> {
+            inTutorial = false;
+            tutorialOverlay.setVisibility(View.GONE);
+        });
+
+        btnTutorialGotIt.setOnClickListener(v -> {
+            tutorialOverlay.setVisibility(View.GONE);
+        });
 
         TextView menuButton = findViewById(R.id.menuIcon);
         menuButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
@@ -82,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
         Button btnGo = findViewById(R.id.btnGo);
         btnGo.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LocationRequest.class);
+            if (inTutorial) {
+                intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
+            }
             startActivity(intent);
         });
     }

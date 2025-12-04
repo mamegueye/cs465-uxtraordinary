@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,11 +36,17 @@ public class Results extends AppCompatActivity {
     private boolean filterCafeFood;
     private String filterLocation;
 
+    private View tutorialOverlay;
+    private Button btnTutorialSkip;
+    private Button btnTutorialGotIt;
+    private boolean inTutorial = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+
+        inTutorial = getIntent().getBooleanExtra(TutorialConstants.EXTRA_TOUR, false);
 
         // Set back button listener
         Button backButton = findViewById(R.id.back);
@@ -70,6 +77,25 @@ public class Results extends AppCompatActivity {
         homeButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+        });
+
+        tutorialOverlay = findViewById(R.id.tutorialOverlay);
+        btnTutorialSkip = findViewById(R.id.btnTutorialSkip);
+        btnTutorialGotIt = findViewById(R.id.btnTutorialGotIt);
+
+        if (inTutorial) {
+            tutorialOverlay.setVisibility(View.VISIBLE);
+        } else {
+            tutorialOverlay.setVisibility(View.GONE);
+        }
+
+        btnTutorialSkip.setOnClickListener(v -> {
+            inTutorial = false;
+            tutorialOverlay.setVisibility(View.GONE);
+        });
+
+        btnTutorialGotIt.setOnClickListener(v -> {
+            tutorialOverlay.setVisibility(View.GONE);
         });
 
         recyclerView = findViewById(R.id.buildingRecyclerView);
@@ -111,6 +137,9 @@ public class Results extends AppCompatActivity {
             intent.putExtra("latitude", building.latitude);
             intent.putExtra("longitude", building.longitude);
             intent.putExtra("cafe", building.cafe);
+            if (inTutorial) {
+                intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
+            }
             startActivity(intent);
         });
 

@@ -19,7 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 public class SpaceFiltering extends AppCompatActivity
-    implements View.OnClickListener {
+        implements View.OnClickListener {
 
     // Hannah
     private Button applyButton;
@@ -42,10 +42,17 @@ public class SpaceFiltering extends AppCompatActivity
     private boolean hasCafeFood = false;
     private String currentLocation;
 
+    private View tutorialOverlay;
+    private Button btnTutorialSkip;
+    private Button btnTutorialGotIt;
+    private boolean inTutorial = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_space_filtering);
+
+        inTutorial = getIntent().getBooleanExtra(TutorialConstants.EXTRA_TOUR, false);
 
         // Set menu button listener
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
@@ -95,13 +102,32 @@ public class SpaceFiltering extends AppCompatActivity
 
         // Set up event listeners
         setupListeners();
+
+        tutorialOverlay = findViewById(R.id.tutorialOverlay);
+        btnTutorialSkip = findViewById(R.id.btnTutorialSkip);
+        btnTutorialGotIt = findViewById(R.id.btnTutorialGotIt);
+
+        if (inTutorial) {
+            tutorialOverlay.setVisibility(View.VISIBLE);
+        } else {
+            tutorialOverlay.setVisibility(View.GONE);
+        }
+
+        btnTutorialSkip.setOnClickListener(v -> {
+            inTutorial = false;
+            tutorialOverlay.setVisibility(View.GONE);
+        });
+
+        btnTutorialGotIt.setOnClickListener(v -> {
+            tutorialOverlay.setVisibility(View.GONE);
+        });
     }
 
     // Hannah
     // For when the user presses the 'Next' Button or 'Back' Button
     public void onClick(View v) {
 
-            // User pressed BACK BUTTON
+        // User pressed BACK BUTTON
         if (v.getId() == R.id.back_button_filtering) {
             Intent intent = new Intent(this, LocationRequest.class);
             startActivity(intent);
@@ -191,6 +217,9 @@ public class SpaceFiltering extends AppCompatActivity
         intent.putExtra("filter_open_now", criteria.isOpenNow());
         intent.putExtra("filter_cafe_food", criteria.isHasCafeFood());
         intent.putExtra("filter_location", criteria.getCurrentLocation());
+        if (inTutorial) {
+            intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
+        }
         startActivity(intent);
 
         // For now, just log the criteria (or show a Toast for debugging)

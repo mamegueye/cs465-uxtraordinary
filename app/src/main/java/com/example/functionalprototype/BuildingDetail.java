@@ -2,10 +2,11 @@ package com.example.functionalprototype;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -16,10 +17,35 @@ public class BuildingDetail extends AppCompatActivity {
 
     private String buildingName;
 
+    private View tutorialOverlay;
+    private Button btnTutorialSkip;
+    private Button btnTutorialGotIt;
+    private boolean inTutorial;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        inTutorial = getIntent().getBooleanExtra(TutorialConstants.EXTRA_TOUR, false);
+
+        tutorialOverlay = findViewById(R.id.tutorialOverlay);
+        btnTutorialSkip = findViewById(R.id.btnTutorialSkip);
+        btnTutorialGotIt = findViewById(R.id.btnTutorialGotIt);
+
+        if (inTutorial) {
+            tutorialOverlay.setVisibility(View.VISIBLE);
+        } else {
+            tutorialOverlay.setVisibility(View.GONE);
+        }
+
+        View.OnClickListener endTutorial = v -> {
+            inTutorial = false;
+            tutorialOverlay.setVisibility(View.GONE);
+        };
+
+        btnTutorialSkip.setOnClickListener(endTutorial);
+        btnTutorialGotIt.setOnClickListener(endTutorial);
 
         // Set back button listener
         Button backButton = findViewById(R.id.back_butt);
@@ -30,7 +56,7 @@ public class BuildingDetail extends AppCompatActivity {
 
         // Set menu button listener
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
-        TextView menuButton = findViewById(R.id.menu_button);
+        Button menuButton = findViewById(R.id.menu_button);
         Button drawerBuildings = findViewById(R.id.buildings_list_button);
         Button drawerReport = findViewById(R.id.report_issue_button);
 
@@ -45,7 +71,6 @@ public class BuildingDetail extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         });
 
-
         // Set home button listener
         Button homeButton = findViewById(R.id.home_button);
         homeButton.setOnClickListener(v -> {
@@ -58,6 +83,7 @@ public class BuildingDetail extends AppCompatActivity {
         studyHereButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, StudyHere.class);
             intent.putExtra("building_name", buildingName);
+            intent.putExtra(TutorialConstants.EXTRA_TOUR, inTutorial);
             startActivity(intent);
         });
 
@@ -69,7 +95,7 @@ public class BuildingDetail extends AppCompatActivity {
         Intent intent = getIntent();
         name.setText(intent.getStringExtra("building_name"));
         cleanliness.setText(" " + intent.getFloatExtra("cleanliness", 0.f) + "/5");
-        capacity.setText("  N/A"); // TODO: replace this
+        capacity.setText("  N/A");
         String currentDayOfWeek = LocalDate.now().getDayOfWeek().name().toLowerCase();
         hours.setText("  " + intent.getStringExtra(currentDayOfWeek));
 

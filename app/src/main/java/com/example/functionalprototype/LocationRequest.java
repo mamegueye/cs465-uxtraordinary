@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 public class LocationRequest extends AppCompatActivity
-    implements View.OnClickListener {
+        implements View.OnClickListener {
 
     // back buttons in bottom navbar
 
@@ -31,12 +31,18 @@ public class LocationRequest extends AppCompatActivity
     private Button allowOnce;
     private Button dontAllow;
 
+    private View tutorialOverlay;
+    private Button btnTutorialSkip;
+    private Button btnTutorialGotIt;
+    private boolean inTutorial = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_request);
 
-        // Set menu button listener
+        inTutorial = getIntent().getBooleanExtra(TutorialConstants.EXTRA_TOUR, false);
+
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         Button menuButton = findViewById(R.id.menu_button);
         Button drawerBuildings = findViewById(R.id.buildings_list_button);
@@ -69,6 +75,25 @@ public class LocationRequest extends AppCompatActivity
         allowOnce.setOnClickListener(this);
         dontAllow = (Button) findViewById(R.id.dont_allow_button);
         dontAllow.setOnClickListener(this);
+
+        tutorialOverlay = findViewById(R.id.tutorialOverlay);
+        btnTutorialSkip = findViewById(R.id.btnTutorialSkip);
+        btnTutorialGotIt = findViewById(R.id.btnTutorialGotIt);
+
+        if (inTutorial) {
+            tutorialOverlay.setVisibility(View.VISIBLE);
+        } else {
+            tutorialOverlay.setVisibility(View.GONE);
+        }
+
+        btnTutorialSkip.setOnClickListener(v -> {
+            inTutorial = false;
+            tutorialOverlay.setVisibility(View.GONE);
+        });
+
+        btnTutorialGotIt.setOnClickListener(v -> {
+            tutorialOverlay.setVisibility(View.GONE);
+        });
     }
 
     // For when the user presses the 'Next' Button or 'Back' Button
@@ -91,6 +116,9 @@ public class LocationRequest extends AppCompatActivity
 
             // Carry location preference to the filtering page
             intent.putExtra("location_preference", "Thomas M. Siebel Center for Computer Science");
+            if (inTutorial) {
+                intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
+            }
 
             startActivity(intent);
         } else if (v.getId() == R.id.allow_once_button) {
@@ -98,6 +126,9 @@ public class LocationRequest extends AppCompatActivity
 
             // Carry location preference to the filtering page
             intent.putExtra("location_preference", "Thomas M. Siebel Center for Computer Science");
+            if (inTutorial) {
+                intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
+            }
 
             startActivity(intent);
         } else if (v.getId() == R.id.dont_allow_button) {
@@ -105,6 +136,9 @@ public class LocationRequest extends AppCompatActivity
 
             // Carry location preference to the filtering page
             intent.putExtra("location_preference", "Location Not Available");
+            if (inTutorial) {
+                intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
+            }
 
             startActivity(intent);
         }

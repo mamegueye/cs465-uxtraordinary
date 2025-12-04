@@ -19,6 +19,10 @@ public class StudyHere extends AppCompatActivity {
 
     private boolean wasRunning;
 
+    private View tutorialOverlay;
+    private Button btnTutorialSkip;
+    private Button btnTutorialGotIt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -38,6 +42,16 @@ public class StudyHere extends AppCompatActivity {
 
         TextView name = findViewById(R.id.tvBuildingName);
         name.setText(getIntent().getStringExtra("building_name"));
+
+        tutorialOverlay = findViewById(R.id.tutorialOverlay);
+        btnTutorialSkip = findViewById(R.id.btnTutorialSkip);
+        btnTutorialGotIt = findViewById(R.id.btnTutorialGotIt);
+
+        tutorialOverlay.setVisibility(View.VISIBLE);
+
+        View.OnClickListener dismissTutorial = v -> tutorialOverlay.setVisibility(View.GONE);
+        btnTutorialSkip.setOnClickListener(dismissTutorial);
+        btnTutorialGotIt.setOnClickListener(dismissTutorial);
 
         // Set menu button listener
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
