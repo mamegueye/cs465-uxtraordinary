@@ -47,7 +47,7 @@
                     android:layout_marginStart="16dp"
                     android:text="@string/header_report_confirmation"
                     android:textColor="@android:color/white"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <Button
@@ -76,20 +76,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Please confirm the details below:"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:gravity="center"/>
+
+                <!-- Divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:background="#E0E0E0"
+                    android:layout_marginBottom="24dp"/>
 
                 <!-- Choose the building to report -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/reporting_building"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
                 <TextView
                     android:id="@+id/confirmation_building"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="(Building will appear here)"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"/>
 
                 <!-- Choose the floor to report -->
                 <TextView
@@ -97,13 +109,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/reporting_floor"
                     android:layout_marginTop="16dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
                 <TextView
                     android:id="@+id/confirmation_floor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="(Floor will appear here)"
-                    android:layout_marginBottom="16dp"/>
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="16dp"/>
 
 
                 <!-- Enter your report comments; 10/22 Lecture -->
@@ -112,13 +126,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/report_comment_prompt"
                     android:layout_marginTop="16dp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
                 <TextView
                     android:id="@+id/confirmation_comment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="(Comment will appear here)"
-                    android:layout_marginBottom="24dp"/>
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginTop="16dp"/>
             </LinearLayout>
 
             <!-- /////////////////////////////////////// -->
