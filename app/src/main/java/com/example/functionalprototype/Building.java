@@ -20,7 +20,8 @@ public class Building {
     public Float latitude;
     public Float longitude;
     public String cafe;
-
+    private Float userLat;
+    private Float userLng;
 
     public Building(String building_name, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday, Float cleanliness, Float latitude, Float longitude, String cafe) {
         this.building_name = building_name;
@@ -60,6 +61,19 @@ public class Building {
                 "Distance between (%f, %f) and (%f, %f) is %f meters.",
                 this.latitude, this.longitude, lat, lng, distanceInMeters));
         return (float) (distanceInMeters / 1609.34);
+    }
+
+    public void setUserLatLng(float lat, float lng) {
+        userLat = lat;
+        userLng = lng;
+    }
+
+    public boolean hasUserLatLng() {
+        return userLat != null && userLng != null;
+    }
+
+    public float calculateDistanceFromUserLatLng() {
+        return calculateDistanceFrom(userLat, userLng);
     }
 
     public boolean isOpenNow() {

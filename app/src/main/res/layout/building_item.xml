@@ -50,18 +50,6 @@
                 android:drawableTint="@color/white" />
 
             <TextView
-                android:id="@+id/tvBuildingCapacity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="  N/A"
-                android:textSize="14dp"
-                android:textColor="@android:color/white"
-                android:drawableLeft="@drawable/cafe_icon_drawable"
-                android:drawableTint="@color/white" />
-
-            <TextView
                 android:id="@+id/tvBuildingHours"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -71,6 +59,18 @@
                 android:textSize="14dp"
                 android:textColor="@android:color/white"
                 android:drawableLeft="@drawable/hours_icon_drawable"
+                android:drawableTint="@color/white" />
+            
+            <TextView
+                android:id="@+id/tvBuildingCafe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text=" Café nearby!"
+                android:textSize="14dp"
+                android:textColor="@android:color/white"
+                android:drawableLeft="@drawable/cafe_icon_drawable"
                 android:drawableTint="@color/white" />
 
         </LinearLayout>

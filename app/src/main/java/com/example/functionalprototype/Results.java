@@ -14,14 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.IOException;
-import java.sql.Time;
-import java.time.LocalTime;
-import java.time.chrono.ChronoLocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.time.LocalDate;
 import java.util.List;
-import java.text.SimpleDateFormat;
 
 public class Results extends AppCompatActivity {
 
@@ -29,7 +23,7 @@ public class Results extends AppCompatActivity {
     BuildingAdapter adapter;
     List<Building> buildingList;
     private float UserLat;
-    private float UserLon;
+    private float UserLng;
 
     private float filterDistance;
     private boolean filterOpenNow;
@@ -159,20 +153,23 @@ public class Results extends AppCompatActivity {
         Log.d("FilterDataFromIntent", "filterLocation="+filterLocation);
     }
 
-    // Method to get user location
-    private void getUserLonLat(SQLiteDatabase db) {
-        Cursor cursor = db.rawQuery("SELECT building_name, latitude, longitude FROM building_hours", null);
+    private ArrayList<Float> getBuildingLatLng(SQLiteDatabase db, String building_name) {
+        ArrayList<Float> latLng = new ArrayList<Float>();
+        Cursor cursor = db.rawQuery(String.format("SELECT building_name, latitude, longitude FROM building_hours WHERE building_name=\"%s\"", building_name), null);
         if (cursor.moveToFirst()) {
             do {
-                UserLat = cursor.isNull(cursor.getColumnIndexOrThrow("latitude")) ? null : cursor.getFloat(cursor.getColumnIndexOrThrow("latitude"));
-                UserLon = cursor.isNull(cursor.getColumnIndexOrThrow("longitude")) ? null : cursor.getFloat(cursor.getColumnIndexOrThrow("longitude"));
+                latLng.add(cursor.getFloat(1));
+                latLng.add(cursor.getFloat(2));
             } while (cursor.moveToNext());
         }
         cursor.close();
+        return latLng;
     }
 
     private List<Building> getFilteredBuildings(SQLiteDatabase db) {
-        getUserLonLat(db);
+        ArrayList<Float> latLng = getBuildingLatLng(db, filterLocation);
+        UserLat = latLng.get(0);
+        UserLng = latLng.get(1);
 
         List<Building> buildings = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM building_hours", null);
@@ -195,87 +192,17 @@ public class Results extends AppCompatActivity {
 
                 // Create a Building object
                 Building building = new Building(buildingName, monday, tuesday, wednesday, thursday, friday, saturday, sunday, cleanliness, latitude, longitude, cafe);
+                building.setUserLatLng(UserLat, UserLng);
 
                 // Apply filters
-                if (matchDistance(building) && (!filterCafeFood || matchCafeFood(building)) && (!filterOpenNow || matchOpenNow(building))) {
+                if (building.calculateDistanceFrom(UserLat, UserLng) < filterDistance
+                        && (!filterCafeFood || building.cafe != null)
+                        && (!filterOpenNow || building.isOpenNow())) {
                     buildings.add(building);
                 }
             } while (cursor.moveToNext());
         }
         cursor.close();
         return buildings;
-    }
-
-    private boolean matchDistance(Building building) {
-        // Compare distance
-        double buildingDistance = calculateDistance(building.latitude, building.longitude, UserLat, UserLon);
-        if (buildingDistance > filterDistance) {
-            Log.d("MatchFailed", building.building_name + " is too far away, at " + buildingDistance + " miles.");
-            return false;
-        }
-        return true;
-    }
-
-    private boolean matchOpenNow(Building building) {
-        int currentDayOfWeek = LocalDate.now().getDayOfWeek().getValue();
-        String[] openingHours = {
-                building.sunday, building.monday, building.tuesday,
-                building.wednesday, building.thursday, building.friday,
-                building.saturday
-        };
-
-        String hoursToday = openingHours[currentDayOfWeek];
-
-        // If locked / closed / invalid → NOT open
-        if (hoursToday == null ||
-                hoursToday.equalsIgnoreCase("LOCKED") ||
-                !hoursToday.contains("-")) {
-            return false;
-        }
-
-        ArrayList<LocalTime> times = parseOpeningHours(hoursToday);
-        if (times.size() < 2) return false; // avoid crash
-
-        LocalTime current = LocalTime.now();
-        return !(current.isBefore(times.get(0)) || current.isAfter(times.get(1)));
-    }
-
-    private boolean matchCafeFood(Building building) {
-        if (building.cafe == null || building.cafe.isEmpty()) {
-            Log.d("MatchFailed", building.building_name + "does not have a cafe.");
-            return false;
-        }
-        return true;
-    }
-
-    private Float calculateDistance(float lat1, float lng1, float lat2, float lng2) {
-        double earthRadius = 6371000; //meters
-        double dLat = Math.toRadians(lat2-lat1);
-        double dLng = Math.toRadians(lng2-lng1);
-        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) *
-                        Math.sin(dLng/2) * Math.sin(dLng/2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        double distanceInMeters = earthRadius * c;
-        Log.d("calculateDistance", String.format(
-                "Distance between (%f, %f) and (%f, %f) is %f meters.",
-                lat1, lng1, lat2, lng2, distanceInMeters));
-        return (float) (distanceInMeters / 1609.34);
-    }
-
-    // Extract hours as LocalTimes
-    private ArrayList<LocalTime> parseOpeningHours(String openingHours) {
-        ArrayList<LocalTime> times = new ArrayList<>();
-        if (openingHours == null ||
-                openingHours.equalsIgnoreCase("LOCKED") ||
-                !openingHours.contains("-")) {
-            return times; // return empty list
-        }
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[hh:mma][h:mma][hha][ha]");
-        for (String s : openingHours.split("-")) {
-            s = s.trim();
-            times.add(LocalTime.parse(s, formatter));
-        }
-        return times;
     }
 }

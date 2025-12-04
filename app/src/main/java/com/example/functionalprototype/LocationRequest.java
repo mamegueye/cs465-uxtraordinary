@@ -5,16 +5,8 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Filter;
-import android.widget.RadioButton;
-import android.widget.Space;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 public class LocationRequest extends AppCompatActivity
@@ -115,7 +107,7 @@ public class LocationRequest extends AppCompatActivity
             Intent intent = new Intent(this, SpaceFiltering.class);
 
             // Carry location preference to the filtering page
-            intent.putExtra("location_preference", "Thomas M. Siebel Center for Computer Science");
+            intent.putExtra("location_preference", "Siebel Center for Comp Sci");
             if (inTutorial) {
                 intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
             }
