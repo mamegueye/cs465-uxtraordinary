@@ -75,6 +75,21 @@
                 android:orientation="vertical"
                 android:gravity="center">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Success!"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/roboto"/>
+                <!-- Divider -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:background="#E0E0E0"
+                    android:layout_marginBottom="24dp"/>
                 <!-- Choose the building to report -->
                 <TextView
                     android:layout_width="wrap_content"
