@@ -44,9 +44,10 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="N/A"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:textColor="@android:color/white"
-                android:drawableLeft="@drawable/bathroom_icon_drawable"/>
+                android:drawableLeft="@drawable/bathroom_icon_drawable"
+                android:drawableTint="@color/white" />
 
             <TextView
                 android:id="@+id/tvBuildingCapacity"
@@ -55,9 +56,10 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="  N/A"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:textColor="@android:color/white"
-                android:drawableLeft="@drawable/capacity_icon_drawable" />
+                android:drawableLeft="@drawable/cafe_icon_drawable"
+                android:drawableTint="@color/white" />
 
             <TextView
                 android:id="@+id/tvBuildingHours"
@@ -66,9 +68,10 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="  N/A"
-                android:textSize="16dp"
+                android:textSize="14dp"
                 android:textColor="@android:color/white"
-                android:drawableLeft="@drawable/hours_icon_drawable" />
+                android:drawableLeft="@drawable/hours_icon_drawable"
+                android:drawableTint="@color/white" />
 
         </LinearLayout>
     </LinearLayout>
