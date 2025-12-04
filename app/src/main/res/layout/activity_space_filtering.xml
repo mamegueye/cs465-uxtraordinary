@@ -42,7 +42,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/UIUC_space_header"
+                    android:text="Study Space Finder"
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     android:textSize="20sp"

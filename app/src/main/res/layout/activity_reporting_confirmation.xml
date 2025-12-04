@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:layout_marginStart="16dp"
-                    android:text="@string/header_report_confirmation"
+                    android:text="Report Confirmation"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
