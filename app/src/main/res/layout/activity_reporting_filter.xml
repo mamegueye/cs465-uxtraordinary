@@ -84,7 +84,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/reporting_building"
                         android:textStyle="bold"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto"/>
                     <!-- Dropdown for choices; from Android docs -->
                     <Spinner
                         android:id="@+id/report_building_dropdown"
@@ -93,7 +94,9 @@
                         android:layout_height="wrap_content"
                         android:spinnerMode="dropdown"
                         android:gravity="center"
-                        android:layout_marginTop="16dp">
+                        android:layout_marginTop="16dp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto">
                     </Spinner>
                 </LinearLayout>
                 <!-- Divider -->
@@ -115,7 +118,8 @@
                         android:text="@string/reporting_floor"
                         android:layout_marginTop="16dp"
                         android:textStyle="bold"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto"/>
 
                     <!-- Choices for floors; use dropdown since radio took too much space -->
                     <!-- Dropdown for choices; from Android docs -->
@@ -126,7 +130,9 @@
                         android:layout_height="wrap_content"
                         android:spinnerMode="dropdown"
                         android:gravity="center"
-                        android:layout_marginTop="16dp">
+                        android:layout_marginTop="16dp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto">
                     </Spinner>
                 </LinearLayout>
                 <!-- Divider -->
@@ -148,7 +154,8 @@
                         android:text="@string/report_comment_prompt"
                         android:layout_marginTop="16dp"
                         android:textStyle="bold"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto"/>
                     <EditText
                         android:id="@+id/user_enter_report"
                         android:layout_width="match_parent"
@@ -158,7 +165,9 @@
                         android:padding="12dp"
                         android:minLines="10"
                         android:gravity="top|start"
-                        android:layout_marginTop="16dp"/>
+                        android:layout_marginTop="16dp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto"/>
                 </LinearLayout>
             </LinearLayout>
 
