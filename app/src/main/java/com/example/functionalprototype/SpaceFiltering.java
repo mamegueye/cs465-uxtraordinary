@@ -40,6 +40,8 @@ public class SpaceFiltering extends AppCompatActivity
     private float currentDistanceMiles = 0.5f;
     private boolean isOpenNow = false;
     private boolean hasCafeFood = false;
+    private float currentLat;
+    private float currentLng;
     private String currentLocation;
 
     private View tutorialOverlay;
@@ -52,7 +54,8 @@ public class SpaceFiltering extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_space_filtering);
 
-        inTutorial = getIntent().getBooleanExtra(TutorialConstants.EXTRA_TOUR, false);
+        Intent intent = getIntent();
+        inTutorial = intent.getBooleanExtra(TutorialConstants.EXTRA_TOUR, false);
 
         // Set menu button listener
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
@@ -73,16 +76,13 @@ public class SpaceFiltering extends AppCompatActivity
 
         // Hannah Code
         // Grab the user's location preference from intent
-        Intent intent_received = getIntent();
-        String location_preference = intent_received.getStringExtra("location_preference");
-        currentLocation = location_preference;
+        currentLat = intent.getFloatExtra("user_lat", 0);
+        currentLng = intent.getFloatExtra("user_lng", 0);
 
         // Grab XML location to replace
         locationPlaceholder = findViewById(R.id.tvCurrentLocation);
-
-        // Replace XML placeholder with intent data
-        if (location_preference != null && !location_preference.isEmpty()) {
-            locationPlaceholder.setText(location_preference);
+        if (currentLat != 0 && currentLng != 0) {
+            locationPlaceholder.setText("Using fine-grain GPS location.");
         } else {
             locationPlaceholder.setText("Location Not Available");
         }
@@ -129,7 +129,7 @@ public class SpaceFiltering extends AppCompatActivity
 
         // User pressed BACK BUTTON
         if (v.getId() == R.id.back_button_filtering) {
-            Intent intent = new Intent(this, LocationRequest.class);
+            Intent intent = new Intent(this, LocationRequestPermission.class);
             startActivity(intent);
 
             // User pressed HOME BUTTON
@@ -153,7 +153,7 @@ public class SpaceFiltering extends AppCompatActivity
         btnApply = findViewById(R.id.btnApply);
 
         // Set initial values
-        tvCurrentLocation.setText(currentLocation);
+        // tvCurrentLocation.setText(currentLocation);
         updateDistanceDisplay(currentDistanceMiles);
     }
 
@@ -217,6 +217,8 @@ public class SpaceFiltering extends AppCompatActivity
         intent.putExtra("filter_open_now", criteria.isOpenNow());
         intent.putExtra("filter_cafe_food", criteria.isHasCafeFood());
         intent.putExtra("filter_location", criteria.getCurrentLocation());
+        intent.putExtra("user_lat", currentLat);
+        intent.putExtra("user_lng", currentLng);
         if (inTutorial) {
             intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
         }
