@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnGo = findViewById(R.id.btnGo);
         btnGo.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, LocationRequest.class);
+            Intent intent = new Intent(MainActivity.this, LocationRequestPermission.class);
             if (inTutorial) {
                 intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
             }

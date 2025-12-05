@@ -22,8 +22,8 @@ public class Results extends AppCompatActivity {
     RecyclerView recyclerView;
     BuildingAdapter adapter;
     List<Building> buildingList;
-    private float UserLat;
-    private float UserLng;
+    private float userLat;
+    private float userLng;
 
     private float filterDistance;
     private boolean filterOpenNow;
@@ -149,12 +149,16 @@ public class Results extends AppCompatActivity {
         filterDistance = intent.getFloatExtra("filter_distance", 0.5f);
         filterOpenNow = intent.getBooleanExtra("filter_open_now", false);
         filterCafeFood = intent.getBooleanExtra("filter_cafe_food", false);
+        userLat = intent.getFloatExtra("user_lat", 0);
+        userLng = intent.getFloatExtra("user_lng", 0);
         filterLocation = intent.getStringExtra("filter_location");
 
 
         Log.d("FilterDataFromIntent", "filterDistance="+filterDistance);
         Log.d("FilterDataFromIntent", "filterOpenNow="+filterOpenNow);
         Log.d("FilterDataFromIntent", "filterCafeFood="+filterCafeFood);
+        Log.d("FilterDataFromIntent", "userLat="+userLat);
+        Log.d("FilterDataFromIntent", "userLng="+userLng);
         Log.d("FilterDataFromIntent", "filterLocation="+filterLocation);
     }
 
@@ -172,10 +176,10 @@ public class Results extends AppCompatActivity {
     }
 
     private List<Building> getFilteredBuildings(SQLiteDatabase db) {
-        ArrayList<Float> latLng = getBuildingLatLng(db, filterLocation);
+        // ArrayList<Float> latLng = getBuildingLatLng(db, filterLocation);
 
         // Debugging (Hannah)
-        if (latLng.isEmpty()) {
+        /* if (latLng.isEmpty()) {
             Log.e("RESULTS", "No lat/lng found for building: " + filterLocation);
 
             // Prevent crash by using default lat and long for UIUC
@@ -190,6 +194,8 @@ public class Results extends AppCompatActivity {
 
         UserLat = latLng.get(0);
         UserLng = latLng.get(1);
+
+         */
 
         List<Building> buildings = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT * FROM building_hours", null);
@@ -212,10 +218,10 @@ public class Results extends AppCompatActivity {
 
                 // Create a Building object
                 Building building = new Building(buildingName, monday, tuesday, wednesday, thursday, friday, saturday, sunday, cleanliness, latitude, longitude, cafe);
-                building.setUserLatLng(UserLat, UserLng);
+                building.setUserLatLng(userLat, userLng);
 
                 // Apply filters
-                if (building.calculateDistanceFrom(UserLat, UserLng) < filterDistance
+                if (building.calculateDistanceFrom(userLat, userLng) < filterDistance
                         && (!filterCafeFood || building.cafe != null)
                         && (!filterOpenNow || building.isOpenNow())) {
                     buildings.add(building);
