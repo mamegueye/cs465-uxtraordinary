@@ -198,15 +198,7 @@
                     android:orientation="horizontal"
                     android:gravity="end">
 
-                    <Button
-                        android:id="@+id/btnTutorialSkip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Skip"
-                        android:textAllCaps="false"
-                        android:textSize="20sp"
-                        android:fontFamily="sans-serif"/>
-
+                    <!-- Only Got it button kept -->
                     <Button
                         android:id="@+id/btnTutorialGotIt"
                         android:layout_width="wrap_content"

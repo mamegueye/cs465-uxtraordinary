@@ -19,7 +19,6 @@ public class StudyHere extends AppCompatActivity {
     private boolean wasRunning;
 
     private View tutorialOverlay;
-    private Button btnTutorialSkip;
     private Button btnTutorialGotIt;
 
     @Override
@@ -55,13 +54,9 @@ public class StudyHere extends AppCompatActivity {
 
         // Tutorial overlay
         tutorialOverlay = findViewById(R.id.tutorialOverlay);
-        btnTutorialSkip = findViewById(R.id.btnTutorialSkip);
         btnTutorialGotIt = findViewById(R.id.btnTutorialGotIt);
         tutorialOverlay.setVisibility(View.VISIBLE);
-
-        View.OnClickListener dismissTutorial = v -> tutorialOverlay.setVisibility(View.GONE);
-        btnTutorialSkip.setOnClickListener(dismissTutorial);
-        btnTutorialGotIt.setOnClickListener(dismissTutorial);
+        btnTutorialGotIt.setOnClickListener(v -> tutorialOverlay.setVisibility(View.GONE));
 
         // Drawer menu
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
