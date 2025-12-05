@@ -33,10 +33,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="☰"
-                    android:textColor="@android:color/white"
                     android:backgroundTint="@android:color/transparent"
                     android:textStyle="bold"
-                    android:layout_alignParentLeft="true"/>
+                    android:layout_alignParentLeft="true"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
