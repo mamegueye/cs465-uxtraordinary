@@ -110,6 +110,7 @@ public class Results extends AppCompatActivity {
             }
             cursor.close();
 
+
             buildingList = getFilteredBuildings(db);
 
         } catch (IOException e) {
@@ -138,6 +139,8 @@ public class Results extends AppCompatActivity {
         });
 
         recyclerView.setAdapter(adapter);
+
+
     }
 
     // Method to get filter data from the intent
@@ -147,6 +150,8 @@ public class Results extends AppCompatActivity {
         filterOpenNow = intent.getBooleanExtra("filter_open_now", false);
         filterCafeFood = intent.getBooleanExtra("filter_cafe_food", false);
         filterLocation = intent.getStringExtra("filter_location");
+
+
         Log.d("FilterDataFromIntent", "filterDistance="+filterDistance);
         Log.d("FilterDataFromIntent", "filterOpenNow="+filterOpenNow);
         Log.d("FilterDataFromIntent", "filterCafeFood="+filterCafeFood);
@@ -168,6 +173,21 @@ public class Results extends AppCompatActivity {
 
     private List<Building> getFilteredBuildings(SQLiteDatabase db) {
         ArrayList<Float> latLng = getBuildingLatLng(db, filterLocation);
+
+        // Debugging (Hannah)
+        if (latLng.isEmpty()) {
+            Log.e("RESULTS", "No lat/lng found for building: " + filterLocation);
+
+            // Prevent crash by using default lat and long for UIUC
+            UserLat = 40.1106f;
+            UserLng = -88.2284f;
+
+            // You can return empty list or continue using default position
+            return new ArrayList<>();
+        }
+
+        // -------
+
         UserLat = latLng.get(0);
         UserLng = latLng.get(1);
 

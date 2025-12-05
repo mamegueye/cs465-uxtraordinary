@@ -28,7 +28,7 @@ public class FilterActivity extends AppCompatActivity {
     private float currentDistanceMiles = 0.5f;
     private boolean isOpenNow = false;
     private boolean hasCafeFood = false;
-    private String currentLocation = "Thomas M. Siebel Center for Computer Science";
+    private String currentLocation = "Siebel Center for Comp Sci";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
