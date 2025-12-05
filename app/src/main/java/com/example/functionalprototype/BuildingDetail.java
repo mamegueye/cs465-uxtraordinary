@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -16,7 +17,6 @@ import java.time.LocalDate;
 public class BuildingDetail extends AppCompatActivity {
 
     private String buildingName;
-
     private View tutorialOverlay;
     private Button btnTutorialSkip;
     private Button btnTutorialGotIt;
@@ -47,14 +47,11 @@ public class BuildingDetail extends AppCompatActivity {
         btnTutorialSkip.setOnClickListener(endTutorial);
         btnTutorialGotIt.setOnClickListener(endTutorial);
 
-        // Set back button listener
+        // Back button
         Button backButton = findViewById(R.id.back_butt);
-        backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(BuildingDetail.this, BuildingList.class);
-            startActivity(intent);
-        });
+        backButton.setOnClickListener(v -> startActivity(new Intent(BuildingDetail.this, BuildingList.class)));
 
-        // Set menu button listener
+        // Drawer buttons
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         Button menuButton = findViewById(R.id.menu_button);
         Button drawerBuildings = findViewById(R.id.buildings_list_button);
@@ -65,40 +62,51 @@ public class BuildingDetail extends AppCompatActivity {
             startActivity(new Intent(BuildingDetail.this, BuildingList.class));
             drawerLayout.closeDrawer(GravityCompat.START);
         });
-
         drawerReport.setOnClickListener(v -> {
             startActivity(new Intent(BuildingDetail.this, ReportFeature.class));
             drawerLayout.closeDrawer(GravityCompat.START);
         });
 
-        // Set home button listener
+        // Home button
         Button homeButton = findViewById(R.id.home_button);
-        homeButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        });
+        homeButton.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
 
-        // Set study here button listener
-        Button studyHereButton = findViewById(R.id.studyHere_butt);
-        studyHereButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, StudyHere.class);
-            intent.putExtra("building_name", buildingName);
-            intent.putExtra(TutorialConstants.EXTRA_TOUR, inTutorial);
-            startActivity(intent);
-        });
+        // Receive intent data
+        Intent intent = getIntent();
+        buildingName = intent.getStringExtra("building_name");
 
         TextView name = findViewById(R.id.tvBuildingName);
         TextView cleanliness = findViewById(R.id.tvBuildingCleanliness);
         TextView capacity = findViewById(R.id.tvBuildingCapacity);
         TextView hours = findViewById(R.id.tvBuildingHours);
+        ImageView buildingImage = findViewById(R.id.buildingImage);
 
-        Intent intent = getIntent();
-        name.setText(intent.getStringExtra("building_name"));
+        // Set text views
+        name.setText(buildingName);
         cleanliness.setText(" " + intent.getFloatExtra("cleanliness", 0.f) + "/5");
         capacity.setText("  N/A");
         String currentDayOfWeek = LocalDate.now().getDayOfWeek().name().toLowerCase();
         hours.setText("  " + intent.getStringExtra(currentDayOfWeek));
 
-        buildingName = intent.getStringExtra("building_name");
+        // Set study here button
+        Button studyHereButton = findViewById(R.id.studyHere_butt);
+        studyHereButton.setOnClickListener(v -> {
+            Intent studyIntent = new Intent(this, StudyHere.class);
+            studyIntent.putExtra("building_name", buildingName);
+            studyIntent.putExtra(TutorialConstants.EXTRA_TOUR, inTutorial);
+            startActivity(studyIntent);
+        });
+
+        // Load the correct image dynamically
+        String drawableName = buildingName.toLowerCase()
+                .replace("&", "and")
+                .replace(",", "")
+                .replace(" ", "_");
+        int imageResId = getResources().getIdentifier(drawableName, "drawable", getPackageName());
+        if (imageResId != 0) {
+            buildingImage.setImageResource(imageResId);
+        } else {
+            buildingImage.setImageResource(R.drawable.spaces_grainger_drawable); // fallback
+        }
     }
 }

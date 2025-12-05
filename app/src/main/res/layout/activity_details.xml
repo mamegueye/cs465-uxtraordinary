@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:padding="12dp"
             android:gravity="center_vertical"
-            android:background="#E84A27"> <!-- UIUC Orange -->
+            android:background="#E84A27">
 
             <Button
                 android:id="@+id/menu_button"
@@ -27,7 +27,7 @@
                 android:textColor="@android:color/white"
                 android:backgroundTint="@android:color/transparent"
                 android:textStyle="bold"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:textSize="22sp"/>
 
             <TextView
@@ -50,7 +50,7 @@
                 android:textColor="@android:color/white"
                 android:backgroundTint="@android:color/transparent"
                 android:textStyle="bold"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:fontFamily="sans-serif"/>
         </RelativeLayout>
 
@@ -79,10 +79,13 @@
                 android:padding="20dp"
                 android:fontFamily="@font/roboto"/>
 
-            <TextView
+            <ImageView
+                android:id="@+id/buildingImage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableTop="@drawable/spaces_siebel_drawable" />
+                android:layout_height="200dp"
+                android:layout_margin="16dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

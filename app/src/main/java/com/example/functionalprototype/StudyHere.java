@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.Gravity;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ImageView;
 import java.util.Locale;
 import android.view.View;
 
@@ -14,9 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 public class StudyHere extends AppCompatActivity {
     private int seconds = 0;
-
     private boolean running = true;
-
     private boolean wasRunning;
 
     private View tutorialOverlay;
@@ -24,36 +23,47 @@ public class StudyHere extends AppCompatActivity {
     private Button btnTutorialGotIt;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_study_here);
+
         if (savedInstanceState != null) {
-            seconds
-                    = savedInstanceState
-                    .getInt("seconds");
-            running
-                    = savedInstanceState
-                    .getBoolean("running");
-            wasRunning
-                    = savedInstanceState
-                    .getBoolean("wasRunning");
+            seconds = savedInstanceState.getInt("seconds");
+            running = savedInstanceState.getBoolean("running");
+            wasRunning = savedInstanceState.getBoolean("wasRunning");
         }
 
+        // Building name
         TextView name = findViewById(R.id.tvBuildingName);
-        name.setText(getIntent().getStringExtra("building_name"));
+        String buildingName = getIntent().getStringExtra("building_name");
+        name.setText(buildingName);
 
+        // Dynamic building image
+        ImageView buildingImage = findViewById(R.id.ivBuildingImage);
+        if (buildingName != null) {
+            String drawableName = buildingName.toLowerCase()
+                    .replace("&", "and")
+                    .replace(",", "")
+                    .replace(" ", "_");
+            int imageResId = getResources().getIdentifier(drawableName, "drawable", getPackageName());
+            if (imageResId != 0) {
+                buildingImage.setImageResource(imageResId);
+            } else {
+                buildingImage.setImageResource(R.drawable.spaces_grainger_drawable);
+            }
+        }
+
+        // Tutorial overlay
         tutorialOverlay = findViewById(R.id.tutorialOverlay);
         btnTutorialSkip = findViewById(R.id.btnTutorialSkip);
         btnTutorialGotIt = findViewById(R.id.btnTutorialGotIt);
-
         tutorialOverlay.setVisibility(View.VISIBLE);
 
         View.OnClickListener dismissTutorial = v -> tutorialOverlay.setVisibility(View.GONE);
         btnTutorialSkip.setOnClickListener(dismissTutorial);
         btnTutorialGotIt.setOnClickListener(dismissTutorial);
 
-        // Set menu button listener
+        // Drawer menu
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
         Button menuButton = findViewById(R.id.menu_button);
         Button drawerBuildings = findViewById(R.id.buildings_list_button);
@@ -64,112 +74,66 @@ public class StudyHere extends AppCompatActivity {
             startActivity(new Intent(StudyHere.this, BuildingList.class));
             drawerLayout.closeDrawer(Gravity.START);
         });
-
         drawerReport.setOnClickListener(v -> {
             startActivity(new Intent(StudyHere.this, ReportFeature.class));
             drawerLayout.closeDrawer(Gravity.START);
         });
 
-        // Set home button listener
+        // Home button
         Button homeButton = findViewById(R.id.home_button);
-        homeButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        });
+        homeButton.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
 
-        // Set end button listener
+        // End button
         Button endButton = findViewById(R.id.btnEnd);
-        endButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        });
+        endButton.setOnClickListener(v -> startActivity(new Intent(this, MainActivity.class)));
 
-        // Set report button listener
+        // Report button
         Button reportButton = findViewById(R.id.btnReport);
-        reportButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ReportingFilter.class);
-            startActivity(intent);
-        });
+        reportButton.setOnClickListener(v -> startActivity(new Intent(this, ReportingFilter.class)));
 
         runTimer();
     }
 
     @Override
-    public void onSaveInstanceState(
-            Bundle savedInstanceState)
-    {
-        savedInstanceState
-                .putInt("seconds", seconds);
-        savedInstanceState
-                .putBoolean("running", running);
-        savedInstanceState
-                .putBoolean("wasRunning", wasRunning);
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt("seconds", seconds);
+        savedInstanceState.putBoolean("running", running);
+        savedInstanceState.putBoolean("wasRunning", wasRunning);
     }
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         wasRunning = running;
         running = false;
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
-        if (wasRunning) {
-            running = true;
-        }
+        if (wasRunning) running = true;
     }
 
-    public void onClickStart(View view)
-    {
-        running = true;
-    }
+    public void onClickStart(View view) { running = true; }
+    public void onClickStop(View view) { running = false; }
+    public void onClickReset(View view) { running = false; seconds = 0; }
 
-    public void onClickStop(View view)
-    {
-        running = false;
-    }
-
-    public void onClickReset(View view)
-    {
-        running = false;
-        seconds = 0;
-    }
-
-    private void runTimer()
-    {
-
-        final TextView timeView
-                = findViewById(
-                R.id.tvStopwatch);
-
-        final Handler handler
-                = new Handler();
+    private void runTimer() {
+        final TextView timeView = findViewById(R.id.tvStopwatch);
+        final Handler handler = new Handler();
 
         handler.post(new Runnable() {
             @Override
-
-            public void run()
-            {
+            public void run() {
                 int hours = seconds / 3600;
                 int minutes = (seconds % 3600) / 60;
                 int secs = seconds % 60;
 
-                String time
-                        = String
-                        .format(Locale.getDefault(),
-                                "%d:%02d:%02d", hours,
-                                minutes, secs);
-
+                String time = String.format(Locale.getDefault(), "%d:%02d:%02d", hours, minutes, secs);
                 timeView.setText(time);
 
-                if (running) {
-                    seconds++;
-                }
-
+                if (running) seconds++;
                 handler.postDelayed(this, 1000);
             }
         });
