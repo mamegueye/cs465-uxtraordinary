@@ -25,6 +25,8 @@
         <!-- Hannah's Location Request -->
         <activity
             android:name=".LocationRequestPermission"
+            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|uiMode"
+            android:theme="@style/Theme.Transparent"
             android:exported="true">
         </activity>
         <!-- /////////////////////// -->

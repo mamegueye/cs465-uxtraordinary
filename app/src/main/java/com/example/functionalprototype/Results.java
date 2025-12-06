@@ -44,9 +44,13 @@ public class Results extends AppCompatActivity {
 
         // Set back button listener
         Button backButton = findViewById(R.id.back);
+        //backButton.setOnClickListener(v -> {
+            //Intent intent = new Intent(this, SpaceFiltering.class);
+            //startActivity(intent);
+        //});
         backButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SpaceFiltering.class);
-            startActivity(intent);
+            finish();
+            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         });
 
         // Set menu button listener
@@ -112,6 +116,19 @@ public class Results extends AppCompatActivity {
 
 
             buildingList = getFilteredBuildings(db);
+
+            // --- NO RESULTS FOUND LOGIC ---
+            if (buildingList.isEmpty()) {
+                new androidx.appcompat.app.AlertDialog.Builder(this)
+                        .setTitle("No Results Found")
+                        .setMessage("Try adjusting your distance or filter options.")
+                        .setCancelable(false)
+                        .setPositiveButton("Go Back", (dialog, which) -> {
+                            // Go back to SpaceFiltering, keeping previous filter settings
+                            finish();
+                        })
+                        .show();
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

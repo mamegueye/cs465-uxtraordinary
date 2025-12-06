@@ -228,7 +228,7 @@ public class SpaceFiltering extends AppCompatActivity
         Log.d("FilterActivity", "Filter applied: " + criteria.toString());
 
         // Placeholder: Return to previous activity
-        finish();
+        //finish();
     }
 
     /**
