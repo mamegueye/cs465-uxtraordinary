@@ -140,7 +140,7 @@ public class SpaceFiltering extends AppCompatActivity
 
         // User pressed BACK BUTTON
         if (v.getId() == R.id.back_button_filtering) {
-            Intent intent = new Intent(this, LocationRequestPermission.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
 
             // User pressed HOME BUTTON
