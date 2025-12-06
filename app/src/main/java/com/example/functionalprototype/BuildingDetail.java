@@ -111,7 +111,6 @@ public class BuildingDetail extends AppCompatActivity {
         TextView hours = findViewById(R.id.tvBuildingHours);
         TextView cafe = findViewById(R.id.tvBuildingCafe);
         ImageView buildingImage = findViewById(R.id.buildingImage);
-
         TextView address = findViewById(R.id.tvBuildingAddress);
         TextView info = findViewById(R.id.tvBuildingInfo);
 
@@ -121,7 +120,6 @@ public class BuildingDetail extends AppCompatActivity {
         cafe.setVisibility(intent.getStringExtra("cafe").equals("yes") ? VISIBLE : INVISIBLE);
         String currentDayOfWeek = LocalDate.now().getDayOfWeek().name().toLowerCase();
         hours.setText("  " + intent.getStringExtra(currentDayOfWeek));
-
         String addressValue = intent.getStringExtra("address");
         String infoValue = intent.getStringExtra("info");
 

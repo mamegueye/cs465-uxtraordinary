@@ -15,7 +15,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 public class ReportFeature extends AppCompatActivity
 implements AdapterView.OnItemSelectedListener, View.OnClickListener {
-
     // Dropdown: Report an issue with the app or study space/bathroom
     private Spinner reportDropdownAnswer;
     private Button nextButton;
