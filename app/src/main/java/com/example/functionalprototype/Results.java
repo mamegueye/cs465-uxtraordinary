@@ -159,6 +159,7 @@ public class Results extends AppCompatActivity {
             intent.putExtra("user_lat", userLat);
             intent.putExtra("user_lng", userLng);
             intent.putExtra("filter_location", filterLocation);
+            intent.putExtra("back_to_results", true);
 
             if (inTutorial) {
                 intent.putExtra(TutorialConstants.EXTRA_TOUR, true);

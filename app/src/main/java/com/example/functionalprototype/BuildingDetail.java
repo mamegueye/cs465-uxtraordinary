@@ -67,15 +67,19 @@ public class BuildingDetail extends AppCompatActivity {
             Log.d("FilterDataFromIntent", "userLat="+userLat);
             Log.d("FilterDataFromIntent", "userLng="+userLng);
             Log.d("FilterDataFromIntent", "filterLocation="+filterLocation);
-
-            intent = new Intent(BuildingDetail.this, Results.class);
-            intent.putExtra("filter_distance", filterDistance);
-            intent.putExtra("filter_open_now", filterOpenNow);
-            intent.putExtra("filter_cafe_food", filterCafeFood);
-            intent.putExtra("user_lat", userLat);
-            intent.putExtra("user_lng", userLng);
-            intent.putExtra("filter_location", filterLocation);
-            startActivity(intent);
+            if (intent.getBooleanExtra("back_to_results", false)) {
+                intent = new Intent(BuildingDetail.this, Results.class);
+                intent.putExtra("filter_distance", filterDistance);
+                intent.putExtra("filter_open_now", filterOpenNow);
+                intent.putExtra("filter_cafe_food", filterCafeFood);
+                intent.putExtra("user_lat", userLat);
+                intent.putExtra("user_lng", userLng);
+                intent.putExtra("filter_location", filterLocation);
+                startActivity(intent);
+            } else {
+                intent = new Intent(BuildingDetail.this, BuildingList.class);
+                startActivity(intent);
+            }
         });
 
         // Drawer buttons
