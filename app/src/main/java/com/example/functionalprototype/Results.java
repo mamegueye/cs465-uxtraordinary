@@ -153,6 +153,13 @@ public class Results extends AppCompatActivity {
             intent.putExtra("cafe", building.cafe);
             intent.putExtra("address", building.address);
             intent.putExtra("info", building.info);
+            intent.putExtra("filter_distance", filterDistance);
+            intent.putExtra("filter_open_now", filterOpenNow);
+            intent.putExtra("filter_cafe_food", filterCafeFood);
+            intent.putExtra("user_lat", userLat);
+            intent.putExtra("user_lng", userLng);
+            intent.putExtra("filter_location", filterLocation);
+
             if (inTutorial) {
                 intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
             }
