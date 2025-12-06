@@ -51,7 +51,10 @@ public class Results extends AppCompatActivity {
             //startActivity(intent);
         //});
         backButton.setOnClickListener(v -> {
-            finish();
+            // finish();
+            // overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            Intent intent = new Intent(Results.this, FilterActivity.class);
+            startActivity(intent);
             overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         });
 
