@@ -53,9 +53,11 @@ public class Results extends AppCompatActivity {
         backButton.setOnClickListener(v -> {
             // finish();
             // overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-            Intent intent = new Intent(Results.this, FilterActivity.class);
+            Intent intent = new Intent(Results.this, SpaceFiltering.class);
+            if (inTutorial) {
+                intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
+            }
             startActivity(intent);
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         });
 
         // Set menu button listener

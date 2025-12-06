@@ -80,15 +80,15 @@ public class SpaceFiltering extends AppCompatActivity
         Button drawerBuildings = findViewById(R.id.buildings_list_button);
         Button drawerReport = findViewById(R.id.report_issue_button);
 
-        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
+        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
         drawerBuildings.setOnClickListener(v -> {
             startActivity(new Intent(SpaceFiltering.this, BuildingList.class));
-            drawerLayout.closeDrawer(GravityCompat.START);
+            drawerLayout.closeDrawer(Gravity.START);
         });
 
         drawerReport.setOnClickListener(v -> {
             startActivity(new Intent(SpaceFiltering.this, ReportFeature.class));
-            drawerLayout.closeDrawer(GravityCompat.START);
+            drawerLayout.closeDrawer(Gravity.START);
         });
 
         // Hannah Code
