@@ -1,5 +1,8 @@
 package com.example.functionalprototype;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -77,14 +80,14 @@ public class BuildingDetail extends AppCompatActivity {
 
         TextView name = findViewById(R.id.tvBuildingName);
         TextView cleanliness = findViewById(R.id.tvBuildingCleanliness);
-        TextView capacity = findViewById(R.id.tvBuildingCapacity);
         TextView hours = findViewById(R.id.tvBuildingHours);
+        TextView cafe = findViewById(R.id.tvBuildingCafe);
         ImageView buildingImage = findViewById(R.id.buildingImage);
 
         // Set text views
         name.setText(buildingName);
         cleanliness.setText(" " + intent.getFloatExtra("cleanliness", 0.f) + "/5");
-        capacity.setText("  N/A");
+        cafe.setVisibility(intent.getStringExtra("cafe").equals("yes") ? VISIBLE : INVISIBLE);
         String currentDayOfWeek = LocalDate.now().getDayOfWeek().name().toLowerCase();
         hours.setText("  " + intent.getStringExtra(currentDayOfWeek));
 

@@ -102,18 +102,6 @@
                     android:textColor="#333333"
                     android:fontFamily="@font/roboto"
                     android:drawableLeft="@drawable/bathroom_icon_drawable"/>
-
-                <TextView
-                    android:id="@+id/tvBuildingCapacity"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text=" 200"
-                    android:textSize="16dp"
-                    android:fontFamily="@font/roboto"
-                    android:textColor="#333333"
-                    android:drawableLeft="@drawable/capacity_icon_drawable" />
-
                 <TextView
                     android:id="@+id/tvBuildingHours"
                     android:layout_width="0dp"
@@ -124,6 +112,17 @@
                     android:textSize="16dp"
                     android:textColor="#008000"
                     android:drawableLeft="@drawable/hours_icon_drawable" />
+
+                <TextView
+                    android:id="@+id/tvBuildingCafe"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=" Café nearby!"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="#333333"
+                    android:drawableLeft="@drawable/cafe_icon_drawable" />
 
             </LinearLayout>
 
