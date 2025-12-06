@@ -1,7 +1,10 @@
 package com.example.functionalprototype;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -12,11 +15,21 @@ import android.widget.Space;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
+import androidx.core.view.GravityCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.Priority;
 
 public class SpaceFiltering extends AppCompatActivity
         implements View.OnClickListener {
@@ -40,14 +53,18 @@ public class SpaceFiltering extends AppCompatActivity
     private float currentDistanceMiles = 0.5f;
     private boolean isOpenNow = false;
     private boolean hasCafeFood = false;
-    private float currentLat;
-    private float currentLng;
+    private float currentLat = 0;
+    private float currentLng = 0;
     private String currentLocation;
 
     private View tutorialOverlay;
     private Button btnTutorialSkip;
     private Button btnTutorialGotIt;
     private boolean inTutorial = false;
+    private FusedLocationProviderClient fusedLocationClient;
+    private LocationRequest locationRequest;
+    private LocationCallback locationCallback;
+    private static final int PERMISSIONS_REQUEST_LOCATION = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,29 +80,23 @@ public class SpaceFiltering extends AppCompatActivity
         Button drawerBuildings = findViewById(R.id.buildings_list_button);
         Button drawerReport = findViewById(R.id.report_issue_button);
 
-        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.START));
+        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
         drawerBuildings.setOnClickListener(v -> {
             startActivity(new Intent(SpaceFiltering.this, BuildingList.class));
-            drawerLayout.closeDrawer(Gravity.START);
+            drawerLayout.closeDrawer(GravityCompat.START);
         });
 
         drawerReport.setOnClickListener(v -> {
             startActivity(new Intent(SpaceFiltering.this, ReportFeature.class));
-            drawerLayout.closeDrawer(Gravity.START);
+            drawerLayout.closeDrawer(GravityCompat.START);
         });
 
         // Hannah Code
         // Grab the user's location preference from intent
-        currentLat = intent.getFloatExtra("user_lat", 0);
-        currentLng = intent.getFloatExtra("user_lng", 0);
-
-        // Grab XML location to replace
-        locationPlaceholder = findViewById(R.id.tvCurrentLocation);
-        if (currentLat != 0 && currentLng != 0) {
-            locationPlaceholder.setText("Using fine-grain GPS location.");
-        } else {
-            locationPlaceholder.setText("Location Not Available");
-        }
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        createLocationRequest();
+        createLocationCallback();
+        startLocationUpdates();
 
         // The user has pressed the 'Back' Button
         backButton = (Button) findViewById(R.id.back_button_filtering);
@@ -244,16 +255,53 @@ public class SpaceFiltering extends AppCompatActivity
                 currentLocation
         );
     }
+    private void createLocationRequest() {
+        Log.d("createLocationRequest", "createLocationRequest");
+        locationRequest = new LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 100)
+                .setMinUpdateIntervalMillis(100)
+                .setWaitForAccurateLocation(true) // Wait for accurate location
+                .build();
+    }
 
-    /**
-     * Optional: Method to update current location if needed
-     * This can be called when GPS location is updated or user selects a different location
-     * @param location New location name
-     */
-    public void setCurrentLocation(String location) {
-        this.currentLocation = location;
-        if (tvCurrentLocation != null) {
-            tvCurrentLocation.setText(location);
+    private void createLocationCallback() {
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(@NonNull LocationResult locationResult) {
+                for (android.location.Location location : locationResult.getLocations()) {
+                    currentLat = (float) location.getLatitude();
+                    currentLng = (float) location.getLongitude();
+                    Log.d("onLocationResult", "(" + currentLat + "," + currentLng + ")");
+                    locationPlaceholder = findViewById(R.id.tvCurrentLocation);
+                    if (currentLat != 0 && currentLng != 0) {
+                        locationPlaceholder.setText("Using fine-grain GPS location.");
+                    } else {
+                        locationPlaceholder.setText("Location Not Available");
+                    }
+                }
+            }
+        };
+    }
+    private void startLocationUpdates() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Request permissions if not granted
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_LOCATION);
+            return;
+        }
+        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSIONS_REQUEST_LOCATION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d("onRequestPermissionsResult", "Permission granted, starting location updates.");
+                startLocationUpdates();
+            } else {
+                Log.d("onRequestPermissionsResult", "Permission denied");
+            }
         }
     }
 }
