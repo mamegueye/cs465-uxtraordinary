@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Results extends AppCompatActivity {
@@ -239,13 +241,17 @@ public class Results extends AppCompatActivity {
 
                 // Apply filters
                 if (building.calculateDistanceFrom(userLat, userLng) < filterDistance
-                        && (!filterCafeFood || building.cafe != null)
+                        && (!filterCafeFood || building.cafe.equals("yes"))
                         && (!filterOpenNow || building.isOpenNow())) {
                     buildings.add(building);
                 }
             } while (cursor.moveToNext());
         }
         cursor.close();
+        buildings.sort(Comparator.comparing(Building::calculateDistanceFromUserLatLng));
+        if (buildings.size() > 5) {
+            buildings.subList(5, buildings.size()).clear();
+        }
         return buildings;
     }
 }
