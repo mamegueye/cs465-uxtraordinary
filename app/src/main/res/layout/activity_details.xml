@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:text="Open"
                         android:fontFamily="@font/roboto"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textColor="#008000"/>
                 </LinearLayout>
 
