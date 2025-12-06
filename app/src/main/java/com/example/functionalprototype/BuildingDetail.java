@@ -5,6 +5,7 @@ import static android.view.View.VISIBLE;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -52,7 +53,30 @@ public class BuildingDetail extends AppCompatActivity {
 
         // Back button
         Button backButton = findViewById(R.id.back_butt);
-        backButton.setOnClickListener(v -> startActivity(new Intent(BuildingDetail.this, BuildingList.class)));
+        backButton.setOnClickListener(v -> {
+            Intent intent = getIntent();
+            float filterDistance = intent.getFloatExtra("filter_distance", 0.5f);
+            boolean filterOpenNow = intent.getBooleanExtra("filter_open_now", false);
+            boolean filterCafeFood = intent.getBooleanExtra("filter_cafe_food", false);
+            float userLat = intent.getFloatExtra("user_lat", 0);
+            float userLng = intent.getFloatExtra("user_lng", 0);
+            String filterLocation = intent.getStringExtra("filter_location");
+            Log.d("FilterDataFromIntent", "filterDistance="+filterDistance);
+            Log.d("FilterDataFromIntent", "filterOpenNow="+filterOpenNow);
+            Log.d("FilterDataFromIntent", "filterCafeFood="+filterCafeFood);
+            Log.d("FilterDataFromIntent", "userLat="+userLat);
+            Log.d("FilterDataFromIntent", "userLng="+userLng);
+            Log.d("FilterDataFromIntent", "filterLocation="+filterLocation);
+
+            intent = new Intent(BuildingDetail.this, Results.class);
+            intent.putExtra("filter_distance", filterDistance);
+            intent.putExtra("filter_open_now", filterOpenNow);
+            intent.putExtra("filter_cafe_food", filterCafeFood);
+            intent.putExtra("user_lat", userLat);
+            intent.putExtra("user_lng", userLng);
+            intent.putExtra("filter_location", filterLocation);
+            startActivity(intent);
+        });
 
         // Drawer buttons
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
