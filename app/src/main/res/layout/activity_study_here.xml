@@ -74,10 +74,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Grainger Library"
-                android:textSize="24dp"
+                android:textSize="26dp"
                 android:textColor="#333333"
                 android:textStyle="bold"
                 android:padding="20dp"
+                android:gravity="center_horizontal"
                 android:fontFamily="@font/roboto"/>
 
             <!-- Dynamic Building Image -->

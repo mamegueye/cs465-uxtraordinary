@@ -58,7 +58,7 @@
         <LinearLayout
             android:id="@+id/content_layout"
             android:orientation="vertical"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:paddingTop="16dp"
@@ -73,10 +73,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Grainger Library"
-                android:textSize="24dp"
+                android:textSize="26dp"
                 android:textColor="#333333"
                 android:textStyle="bold"
-                android:padding="20dp"
+                android:padding="16dp"
+                android:gravity="center_horizontal"
                 android:fontFamily="@font/roboto"/>
 
             <ImageView
@@ -90,7 +91,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp">
+                android:layout_margin="16dp">
 
                 <TextView
                     android:id="@+id/tvBuildingCleanliness"
@@ -98,10 +99,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="2.1/5"
-                    android:textSize="16dp"
+                    android:textSize="18dp"
                     android:textColor="#333333"
                     android:fontFamily="@font/roboto"
-                    android:drawableLeft="@drawable/bathroom_icon_drawable"/>
+                    android:drawableLeft="@drawable/bathroom_icon_drawable"
+                    android:gravity="center"/>
                 <TextView
                     android:id="@+id/tvBuildingHours"
                     android:layout_width="0dp"
@@ -109,30 +111,57 @@
                     android:layout_weight="1"
                     android:text=" Open"
                     android:fontFamily="@font/roboto"
-                    android:textSize="16dp"
+                    android:textSize="18dp"
                     android:textColor="#008000"
-                    android:drawableLeft="@drawable/hours_icon_drawable" />
+                    android:drawableLeft="@drawable/hours_icon_drawable"
+                    android:gravity="center"/>
 
                 <TextView
                     android:id="@+id/tvBuildingCafe"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=" Café nearby!"
-                    android:textSize="16dp"
+                    android:drawableLeft="@drawable/cafe_icon_drawable"
                     android:fontFamily="@font/roboto"
+                    android:text=" Café nearby!"
                     android:textColor="#333333"
-                    android:drawableLeft="@drawable/cafe_icon_drawable" />
+                    android:textSize="18dp"
+                    android:gravity="center"/>
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tvBuildingAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="16dp"
+                android:text="1301 W Springfield Ave, Urbana IL"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/tvBuildingInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="20dp"
+                android:text="A popular study spot with plenty of seating, quiet zones, and nearby amenities."
+                android:textColor="#444444"
+                android:textSize="18sp" />
+
             <Button
                 android:id="@+id/studyHere_butt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
                 android:backgroundTint="@color/illini_blue"
                 android:text="Study here!"
-                android:textSize="16dp"
+                android:textSize="20dp"
                 android:textStyle="bold"/>
         </LinearLayout>
 
@@ -264,6 +293,11 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
             <Button
                 android:id="@+id/buildings_list_button"
                 android:layout_width="match_parent"
@@ -271,9 +305,9 @@
                 android:text="Buildings List"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/illini_blue"
                 android:textColor="@android:color/white"
-                android:layout_marginBottom="24dp"
                 android:fontFamily="sans-serif"/>
 
             <Button
@@ -286,6 +320,12 @@
                 android:backgroundTint="@color/illini_blue"
                 android:textColor="@android:color/white"
                 android:fontFamily="sans-serif"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
         </LinearLayout>
     </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

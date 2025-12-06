@@ -61,6 +61,8 @@ public class BuildingList extends AppCompatActivity {
             intent.putExtra("latitude", building.latitude);
             intent.putExtra("longitude", building.longitude);
             intent.putExtra("cafe", building.cafe);
+            intent.putExtra("address", building.address);
+            intent.putExtra("info", building.info);
             startActivity(intent);
         });
 
@@ -95,7 +97,9 @@ public class BuildingList extends AppCompatActivity {
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("latitude")),
                         cursor.isNull(cursor.getColumnIndexOrThrow("longitude")) ? null :
                                 cursor.getFloat(cursor.getColumnIndexOrThrow("longitude")),
-                        cursor.getString(cursor.getColumnIndexOrThrow("cafe"))
+                        cursor.getString(cursor.getColumnIndexOrThrow("cafe")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("address")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("info"))
                 ));
             } while (cursor.moveToNext());
         }

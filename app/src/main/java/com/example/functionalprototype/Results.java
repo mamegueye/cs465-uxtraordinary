@@ -151,6 +151,8 @@ public class Results extends AppCompatActivity {
             intent.putExtra("latitude", building.latitude);
             intent.putExtra("longitude", building.longitude);
             intent.putExtra("cafe", building.cafe);
+            intent.putExtra("address", building.address);
+            intent.putExtra("info", building.info);
             if (inTutorial) {
                 intent.putExtra(TutorialConstants.EXTRA_TOUR, true);
             }
@@ -234,9 +236,11 @@ public class Results extends AppCompatActivity {
                 Float latitude = cursor.isNull(cursor.getColumnIndexOrThrow("latitude")) ? null : cursor.getFloat(cursor.getColumnIndexOrThrow("latitude"));
                 Float longitude = cursor.isNull(cursor.getColumnIndexOrThrow("longitude")) ? null : cursor.getFloat(cursor.getColumnIndexOrThrow("longitude"));
                 String cafe = cursor.getString(cursor.getColumnIndexOrThrow("cafe"));
+                String address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
+                String info = cursor.getString(cursor.getColumnIndexOrThrow("info"));
 
                 // Create a Building object
-                Building building = new Building(buildingName, monday, tuesday, wednesday, thursday, friday, saturday, sunday, cleanliness, latitude, longitude, cafe);
+                Building building = new Building(buildingName, monday, tuesday, wednesday, thursday, friday, saturday, sunday, cleanliness, latitude, longitude, cafe, address, info);
                 building.setUserLatLng(userLat, userLng);
 
                 // Apply filters

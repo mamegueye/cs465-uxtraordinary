@@ -84,12 +84,21 @@ public class BuildingDetail extends AppCompatActivity {
         TextView cafe = findViewById(R.id.tvBuildingCafe);
         ImageView buildingImage = findViewById(R.id.buildingImage);
 
+        TextView address = findViewById(R.id.tvBuildingAddress);
+        TextView info = findViewById(R.id.tvBuildingInfo);
+
         // Set text views
         name.setText(buildingName);
         cleanliness.setText(" " + intent.getFloatExtra("cleanliness", 0.f) + "/5");
         cafe.setVisibility(intent.getStringExtra("cafe").equals("yes") ? VISIBLE : INVISIBLE);
         String currentDayOfWeek = LocalDate.now().getDayOfWeek().name().toLowerCase();
         hours.setText("  " + intent.getStringExtra(currentDayOfWeek));
+
+        String addressValue = intent.getStringExtra("address");
+        String infoValue = intent.getStringExtra("info");
+
+        address.setText(addressValue != null ? addressValue : "Address unavailable");
+        info.setText(infoValue != null ? infoValue : "No description available.");
 
         // Set study here button
         Button studyHereButton = findViewById(R.id.studyHere_butt);

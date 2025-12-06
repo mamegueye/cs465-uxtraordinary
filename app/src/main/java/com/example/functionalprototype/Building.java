@@ -22,8 +22,10 @@ public class Building {
     public String cafe;
     private Float userLat;
     private Float userLng;
+    public String address;
+    public String info;
 
-    public Building(String building_name, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday, Float cleanliness, Float latitude, Float longitude, String cafe) {
+    public Building(String building_name, String monday, String tuesday, String wednesday, String thursday, String friday, String saturday, String sunday, Float cleanliness, Float latitude, Float longitude, String cafe, String address, String info) {
         this.building_name = building_name;
         this.monday = monday;
         this.tuesday = tuesday;
@@ -36,6 +38,8 @@ public class Building {
         this.latitude = latitude;
         this.longitude = longitude;
         this.cafe = cafe;
+        this.address = address;
+        this.info = info;
     }
 
     public String getHoursToday() {
